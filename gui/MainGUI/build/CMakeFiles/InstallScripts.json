@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/ruba/xv6-educational/gui/MainGUI/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
