@@ -130,11 +130,11 @@ private slots:
 
         // Query (latest first)
         QString sql =
-            "SELECT seq, tick, cpu, pid, name, state, type "
-            "FROM events "
-            "WHERE " + where + " "
-            "ORDER BY seq DESC "
-            "LIMIT 2000";
+    "SELECT seq, tick, cpu, pid, name, state "
+    "FROM events "
+    "WHERE " + where + " "
+    "ORDER BY seq DESC "
+    "LIMIT 2000";
 
         QSqlQuery q(m_db);
         q.prepare(sql);
@@ -160,7 +160,6 @@ private slots:
         m_model->setHeaderData(3, Qt::Horizontal, "pid");
         m_model->setHeaderData(4, Qt::Horizontal, "name");
         m_model->setHeaderData(5, Qt::Horizontal, "state");
-        m_model->setHeaderData(6, Qt::Horizontal, "type");
 
         m_status->setText(QString("Rows: %1").arg(m_model->rowCount()));
     }

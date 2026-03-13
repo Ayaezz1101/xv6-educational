@@ -1,10 +1,11 @@
+#!/usr/bin/env python3
+import re
+import sqlite3
+import time
 
-import sys, re, sqlite3, time
-
+LOG_PATH = "/home/ruba/xv6-test/qemu.log"
 DB_PATH = "/home/ruba/xv6-test/events.db"
 
-# يلتقط سطر مثل:
-# seq=537 tick=8365 cpu=1 pid=2 name=sh state=4
 pat = re.compile(
     r"seq=(\d+)\s+tick=(\d+)\s+cpu=(\d+)\s+pid=(\d+)\s+name=([^\s]+)\s+state=(\d+)"
 )
@@ -12,10 +13,11 @@ pat = re.compile(
 def main():
     con = sqlite3.connect(DB_PATH)
     cur = con.cursor()
+
     cur.execute("""
     CREATE TABLE IF NOT EXISTS events(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      seq INTEGER,
+      seq INTEGER UNIQUE,
       tick INTEGER,
       cpu INTEGER,
       pid INTEGER,
@@ -25,28 +27,26 @@ def main():
     """)
     con.commit()
 
-    # تسريع: commit على دفعات
-    buf = []
-    last_commit = time.time()
-    BATCH = 200
-    COMMIT_EVERY_SEC = 0.5
+    with open(LOG_PATH, "r", encoding="utf-8", errors="ignore") as f:
+        f.seek(0, 0)  # ابدأ من أول الملف
 
-    for line in sys.stdin:
-        m = pat.search(line)
-        if not m:
-            continue
-        seq, tick, cpu, pid, name, state = m.groups()
-        buf.append((int(seq), int(tick), int(cpu), int(pid), name, int(state)))
+        while True:
+            line = f.readline()
+            if not line:
+                time.sleep(0.1)
+                continue
 
-        now = time.time()
-        if len(buf) >= BATCH or (buf and (now - last_commit) >= COMMIT_EVERY_SEC):
-            cur.executemany(
-                "INSERT INTO events(seq,tick,cpu,pid,name,state) VALUES (?,?,?,?,?,?)",
-                buf
+            m = pat.search(line)
+            if not m:
+                continue
+
+            seq, tick, cpu, pid, name, state = m.groups()
+
+            cur.execute(
+                "INSERT OR IGNORE INTO events(seq,tick,cpu,pid,name,state) VALUES (?,?,?,?,?,?)",
+                (int(seq), int(tick), int(cpu), int(pid), name, int(state))
             )
             con.commit()
-            buf.clear()
-            last_commit = now
 
 if __name__ == "__main__":
     main()

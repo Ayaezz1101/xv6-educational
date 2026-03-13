@@ -10,6 +10,7 @@
 #include "kernel/fcntl.h"
 
 char *argv[] = { "sh", 0 };
+char *cargv[] = { "cscat", 0 };
 
 int
 main(void)
@@ -22,6 +23,13 @@ main(void)
   }
   dup(0);  // stdout
   dup(0);  // stderr
+
+  // شغّل cscat مرة واحدة بالخلفية
+  if(fork() == 0){
+    exec("cscat", cargv);
+    printf("init: exec cscat failed\n");
+    exit(1);
+  }
 
   for(;;){
     printf("init: starting sh\n");
@@ -37,17 +45,14 @@ main(void)
     }
 
     for(;;){
-      // this call to wait() returns if the shell exits,
-      // or if a parentless process exits.
       wpid = wait((int *) 0);
       if(wpid == pid){
-        // the shell exited; restart it.
         break;
       } else if(wpid < 0){
         printf("init: wait returned an error\n");
         exit(1);
       } else {
-        // it was a parentless process; do nothing.
+        // تجاهل خروج أي child ثاني مثل cscat
       }
     }
   }
