@@ -10,7 +10,6 @@
 #include "kernel/fcntl.h"
 
 char *argv[] = { "sh", 0 };
-char *cargv[] = { "cscat", 0 };
 
 int
 main(void)
@@ -24,12 +23,7 @@ main(void)
   dup(0);  // stdout
   dup(0);  // stderr
 
-  // شغّل cscat مرة واحدة بالخلفية
-  if(fork() == 0){
-    exec("cscat", cargv);
-    printf("init: exec cscat failed\n");
-    exit(1);
-  }
+
 
   for(;;){
     printf("init: starting sh\n");

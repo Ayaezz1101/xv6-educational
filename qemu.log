@@ -1,3 +1,11 @@
+riscv64-linux-gnu-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/init.o user/init.c
+riscv64-linux-gnu-ld -z max-page-size=4096 -T user/user.ld -o user/_init user/init.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-linux-gnu-objdump -S user/_init > user/init.asm
+riscv64-linux-gnu-objdump -t user/_init | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/init.sym
+mkfs/mkfs fs.img README user/_cat user/_echo user/_forktest user/_grep user/_init user/_kill user/_ln user/_ls user/_mkdir user/_rm user/_sh user/_stressfs user/_usertests user/_grind user/_wc user/_zombie user/_logstress user/_forphan user/_dorphan user/_cscat user/_csexport
+nmeta 47 (boot, super, log blocks 31, inode blocks 13, bitmap blocks 1) blocks 1953 total 2000
+balloc: first 1010 blocks have been allocated
+balloc: write bitmap block at sector 46
 qemu-system-riscv64 -machine virt -bios none -kernel kernel/kernel -m 128M -smp 3 -nographic -global virtio-mmio.force-legacy=false -drive file=fs.img,if=none,format=raw,id=x0 -device virtio-blk-device,drive=x0,bus=virtio-mmio-bus.0
 
 xv6 kernel is booting
@@ -5,434 +13,42 @@ xv6 kernel is booting
 hart 2 starting
 hart 1 starting
 init: starting sh
-seq=1 tick=2 cpu=1 pid=2 name=init state=4
-seq=2 tick=2 cpu=0 pid=1 nam$e =init state=4
-seq=3 tick=2 cpu=2 pid=2 name=init state=4
-seq=4 tick=2 cpu=0 pid=3 name=init state=4
-seq=5 tick=2 cpu=1 pid=2 name=init state=4
-seq=6 tick=2 cpu=2 pid=2 name=init state=4
-seq=7 tick=2 cpu=2 pid=3 name=init state=4
-seq=8 tick=2 cpu=0 pid=2 name=init state=4
-seq=9 tick=2 cpu=1 pid=2 name=init state=4
-seq=10 tick=2 cpu=2 pid=3 name=init state=4
-seq=11 tick=2 cpu=2 pid=3 name=init state=4
-seq=12 tick=2 cpu=2 pid=3 name=init state=4
-seq=13 tick=2 cpu=0 pid=3 name=init state=4
-seq=14 tick=2 cpu=2 pid=3 name=init state=4
-seq=15 tick=3 cpu=1 pid=3 name=init state=4
-seq=16 tick=3 cpu=2 pid=3 name=init state=4
-seq=17 tick=3 cpu=0 pid=3 name=init state=4
-seq=18 tick=3 cpu=2 pid=3 name=init state=4
-seq=19 tick=3 cpu=0 pid=3 name=init state=4
-seq=20 tick=3 cpu=2 pid=3 name=sh state=4
-ls
-seq=21 tick=108 cpu=0 pid=3 name=sh state=4
-seq=22 tick=108 cpu=0 pid=4 name=sh stat.e=4  
-s eq   =2  3  t  i   ck=108 cpu=1 12 1 02p4
-id=4 name.. = sh   s tate= 4
-seq=24 tic  k=108 cpu   =2 pid=  14  name=sh 1st 1ate=402
-seq4=
-25 tick=1R08E cADpME u=1   pid=4   name=sh    s tat2e= 24 
-2seq=2642 ti5
-ck=10ca8 cpu=t 1  pi d= 4 n  a m e=sh s ta te  2 3 36680=
-4
-echseq=27 o    t ic      2 k4 =108355 cpu44
-=2 pid=4 name=forktest  s  h  s  2 5ta 1t8e064=4
-
-seq=28 tick=108 cpgurep=1 pi  d= 4  n ame = sh     2s 6 ta441te60
-=4
-seq=29 tick=10ini8 cput= 1   pid= 4    n a m e= 2sh sta te=4
-seq=7 3361060 
-tick=109 kcipu=1 plli d=4 n am     e =   2 8ls state=4 
-s3eq5=46431
- tick=109 cpu=2 pid=4 name=ls lstn  ate=4
-se q=3 2 ti c k= 109 cpu = 0   pi  2 d=49 3 n5264
-ame=ls state=4
-sleqs  =33  tick     =     2 10 14092 8c32p
-u=m2kd ir p i  d    =4   2 1n1a me=l35s52 s0
-tate=4
-seq=34 ticrm   k=   109  c  p u  =2  p2i 12 d=4 name=3ls 55s12tat
-e=4
-seq=35 tick=sh    1 09 cp  u=0  p  i d  =4 n2a m13e =l5s s8tate2=64
-4
-seq=36 tisctkr=10es9sf cpus=1   pid=4    n ame=l s s2 t1at4e =4
-s36e3q92
-use=37 trtestsi  ck=109 cpu= 0 pid=4 name = ls  sta2 15 t1e=49
-s64e32q
-=38 tick=109 cpu=2 pid=4 grninamde= l    s sta t e = 4 2 
-16seq=39 t 5ic1k=10979 2
-cpu=1 piwd=c4   n  ame= ls sta t e=4     
-s 2 1eq=47 37608 t8i
-ck=109 cpu=2 pid=4 name=lzs omsbtatie=4e
- s   eq=  4   12  1t8 ic34k=182409 cpu
-=1 pid=4 name=ls state=4
-seq=42 ltiockg=s110tress    cp   2u 19=2  3p75i12
-d=4 name=ls state=4
-seq=43 fotirpck=ha110n  cp u=1    p id=  2 420 36 304
-name=ls state=4
-seq=44 tickd=11or0 cppuh=2 piadn=4         2 21 35744
-csncat  a  me =ls   st   2a 2te=2 4
-35704s
-eq=45 tick=110 cpu=1 pid=c4se xport n     a me=2l 23 s 3st59ate=92
-4
-seq=46 tick=110 cocpnsu=o2 plied=  4    nam e  3 2=4 ls state0
-=4
-seq=47 tick=110 cpu=1 pid=4 name=$ls  state=4
-seq=48 tick=110 cpu=1 pid=4 name=ls state=4
-seq=49 tick=110 cpu=1 pid=4 name=ls state=4
-seq=50 tick=110 cpu=2 pid=4 name=ls state=4
-seq=51 tick=110 cpu=1 pid=4 name=ls state=4
-seq=52 tick=110 cpu=1 pid=4 name=ls state=4
-seq=53 tick=111 cpu=1 pid=4 name=ls state=4
-seq=54 tick=111 cpu=0 pid=4 name=ls state=4
-seq=55 tick=111 cpu=1 pid=4 name=ls state=4
-seq=56 tick=111 cpu=1 pid=4 name=ls state=4
-seq=57 tick=111 cpu=2 pid=4 name=ls state=4
-seq=58 tick=111 cpu=1 pid=4 name=ls state=4
-seq=59 tick=111 cpu=2 pid=4 name=ls state=4
-seq=60 tick=111 cpu=1 pid=4 name=ls state=4
-seq=61 tick=111 cpu=1 pid=4 name=ls state=4
-seq=62 tick=111 cpu=2 pid=4 name=ls state=4
-seq=63 tick=111 cpu=0 pid=4 name=ls state=4
-seq=64 tick=111 cpu=1 pid=4 name=ls state=4
-seq=65 tick=111 cpu=1 pid=4 name=ls state=4
-seq=66 tick=111 cpu=2 pid=4 name=ls state=4
-seq=67 tick=111 cpu=2 pid=4 name=ls state=4
-seq=68 tick=112 cpu=0 pid=4 name=ls state=4
-seq=69 tick=112 cpu=2 pid=4 name=ls state=4
-seq=70 tick=112 cpu=1 pid=4 name=ls state=4
-seq=71 tick=112 cpu=1 pid=4 name=ls state=4
-seq=72 tick=113 cpu=0 pid=4 name=ls state=4
-seq=73 tick=113 cpu=0 pid=4 name=ls state=4
-seq=74 tick=113 cpu=0 pid=4 name=ls state=4
-seq=75 tick=113 cpu=0 pid=4 name=ls state=4
-seq=76 tick=113 cpu=1 pid=4 name=ls state=4
-seq=77 tick=113 cpu=0 pid=4 name=ls state=4
-seq=78 tick=113 cpu=1 pid=4 name=ls state=4
-seq=79 tick=114 cpu=2 pid=4 name=ls state=4
-seq=80 tick=114 cpu=1 pid=4 name=ls state=4
-seq=81 tick=114 cpu=1 pid=4 name=ls state=4
-seq=82 tick=114 cpu=1 pid=4 name=ls state=4
-seq=83 tick=114 cpu=2 pid=4 name=ls state=4
-seq=84 tick=114 cpu=1 pid=4 name=ls state=4
-seq=85 tick=114 cpu=1 pid=4 name=ls state=4
-seq=86 tick=114 cpu=0 pid=4 name=ls state=4
-seq=87 tick=114 cpu=1 pid=4 name=ls state=4
-seq=88 tick=114 cpu=2 pid=4 name=ls state=4
-seq=89 tick=114 cpu=0 pid=4 name=ls state=4
-seq=90 tick=114 cpu=2 pid=4 name=ls state=4
-seq=91 tick=114 cpu=1 pid=4 name=ls state=4
-seq=92 tick=114 cpu=0 pid=4 name=ls state=4
-seq=93 tick=115 cpu=1 pid=4 name=ls state=4
-seq=94 tick=115 cpu=2 pid=4 name=ls state=4
-seq=95 tick=115 cpu=0 pid=4 name=ls state=4
-seq=96 tick=115 cpu=2 pid=4 name=ls state=4
-seq=97 tick=115 cpu=1 pid=4 name=ls state=4
-seq=98 tick=115 cpu=2 pid=4 name=ls state=4
-seq=99 tick=115 cpu=2 pid=4 name=ls state=4
-seq=100 tick=115 cpu=1 pid=4 name=ls state=4
-seq=101 tick=115 cpu=1 pid=4 name=ls state=4
-seq=102 tick=115 cpu=0 pid=4 name=ls state=4
-seq=103 tick=115 cpu=2 pid=4 name=ls state=4
-seq=104 tick=116 cpu=2 pid=4 name=ls state=4
-seq=105 tick=116 cpu=1 pid=4 name=ls state=4
-seq=106 tick=116 cpu=2 pid=4 name=ls state=4
-seq=107 tick=116 cpu=2 pid=4 name=ls state=4
-seq=108 tick=116 cpu=2 pid=4 name=ls state=4
-seq=109 tick=116 cpu=2 pid=4 name=ls state=4
-seq=110 tick=116 cpu=0 pid=4 name=ls state=4
-seq=111 tick=116 cpu=2 pid=4 name=ls state=4
-seq=112 tick=117 cpu=0 pid=4 name=ls state=4
-seq=113 tick=117 cpu=0 pid=4 name=ls state=4
-seq=114 tick=117 cpu=2 pid=4 name=ls state=4
-seq=115 tick=117 cpu=0 pid=4 name=ls state=4
-seq=116 tick=117 cpu=2 pid=4 name=ls state=4
-seq=117 tick=117 cpu=1 pid=4 name=ls state=4
-seq=118 tick=117 cpu=0 pid=4 name=ls state=4
-seq=119 tick=117 cpu=0 pid=4 name=ls state=4
-seq=120 tick=117 cpu=0 pid=4 name=ls state=4
-seq=121 tick=117 cpu=1 pid=4 name=ls state=4
-seq=122 tick=117 cpu=0 pid=4 name=ls state=4
-seq=123 tick=118 cpu=2 pid=4 name=ls state=4
-seq=124 tick=118 cpu=2 pid=4 name=ls state=4
-seq=125 tick=118 cpu=2 pid=4 name=ls state=4
-seq=126 tick=118 cpu=0 pid=4 name=ls state=4
-seq=127 tick=118 cpu=0 pid=4 name=ls state=4
-seq=128 tick=118 cpu=2 pid=4 name=ls state=4
-seq=129 tick=118 cpu=1 pid=4 name=ls state=4
-seq=130 tick=118 cpu=0 pid=4 name=ls state=4
-seq=131 tick=118 cpu=2 pid=4 name=ls state=4
-seq=132 tick=118 cpu=2 pid=4 name=ls state=4
-seq=133 tick=118 cpu=2 pid=4 name=ls state=4
-seq=134 tick=119 cpu=1 pid=4 name=ls state=4
-seq=135 tick=119 cpu=2 pid=4 name=ls state=4
-seq=136 tick=119 cpu=2 pid=4 name=ls state=4
-seq=137 tick=119 cpu=0 pid=4 name=ls state=4
-seq=138 tick=119 cpu=2 pid=4 name=ls state=4
-seq=139 tick=119 cpu=0 pid=4 name=ls state=4
-seq=140 tick=119 cpu=0 pid=4 name=ls state=4
-seq=141 tick=119 cpu=1 pid=4 name=ls state=4
-seq=142 tick=119 cpu=0 pid=4 name=ls state=4
-seq=143 tick=119 cpu=1 pid=4 name=ls state=4
-seq=144 tick=119 cpu=2 pid=4 name=ls state=4
-seq=145 tick=119 cpu=1 pid=4 name=ls state=4
-seq=146 tick=119 cpu=0 pid=4 name=ls state=4
-seq=147 tick=120 cpu=0 pid=4 name=ls state=4
-seq=148 tick=120 cpu=2 pid=4 name=ls state=4
-seq=149 tick=120 cpu=2 pid=4 name=ls state=4
-seq=150 tick=120 cpu=2 pid=4 name=ls state=4
-seq=151 tick=120 cpu=2 pid=4 name=ls state=4
-seq=152 tick=121 cpu=2 pid=4 name=ls state=4
-seq=153 tick=121 cpu=1 pid=4 name=ls state=4
-seq=154 tick=121 cpu=2 pid=4 name=ls state=4
-seq=155 tick=121 cpu=1 pid=4 name=ls state=4
-seq=156 tick=121 cpu=1 pid=4 name=ls state=4
-seq=157 tick=121 cpu=0 pid=4 name=ls state=4
-seq=158 tick=121 cpu=0 pid=4 name=ls state=4
-seq=159 tick=121 cpu=0 pid=4 name=ls state=4
-seq=160 tick=121 cpu=1 pid=4 name=ls state=4
-seq=161 tick=122 cpu=1 pid=4 name=ls state=4
-seq=162 tick=122 cpu=0 pid=4 name=ls state=4
-seq=163 tick=122 cpu=2 pid=4 name=ls state=4
-seq=164 tick=122 cpu=2 pid=4 name=ls state=4
-seq=165 tick=122 cpu=1 pid=4 name=ls state=4
-seq=166 tick=122 cpu=2 pid=4 name=ls state=4
-seq=167 tick=122 cpu=1 pid=4 name=ls state=4
-seq=168 tick=122 cpu=0 pid=4 name=ls state=4
-seq=169 tick=122 cpu=1 pid=4 name=ls state=4
-seq=170 tick=122 cpu=0 pid=4 name=ls state=4
-seq=171 tick=122 cpu=1 pid=4 name=ls state=4
-seq=172 tick=123 cpu=0 pid=4 name=ls state=4
-seq=173 tick=123 cpu=0 pid=4 name=ls state=4
-seq=174 tick=123 cpu=1 pid=4 name=ls state=4
-seq=175 tick=123 cpu=1 pid=4 name=ls state=4
-seq=176 tick=123 cpu=1 pid=4 name=ls state=4
-seq=177 tick=123 cpu=2 pid=4 name=ls state=4
-seq=178 tick=123 cpu=2 pid=4 name=ls state=4
-seq=179 tick=123 cpu=2 pid=4 name=ls state=4
-seq=180 tick=123 cpu=1 pid=4 name=ls state=4
-seq=181 tick=124 cpu=1 pid=3 name=sh state=4
-seq=182 tick=124 cpu=2 pid=3 name=sh state=4
-seq=183 tick=124 cpu=1 pid=3 name=sh state=4
-ls
-seq=184 tick=609 cpu=1 pid=3 name=sh state=4
-. s e   q   = 1 85 t  ic  1 1k=6 09 cpu1=1 p024id
-=5 name=..sh state=  4
- se q= 186 tick=60  9       cpu=0 pi1 d1 =5 1n0ame2=4ls
- state=4
-seq=187 tickR=6E09 cpuAD=1M Epi  d=5   na me   =l s2  s2 2tate=4
-seq=1884 t25ic
-k=610 ccpua=0 ptid=5 n am e=  ls s t ate    =4
-seq=189 tick =6 102 3  36c680p
-u=0 pid=5 name=ls echstaote  =        4
-s 2 e4q=190 ti 3ck554=6140
- cpu=0 pid=5 name=lfosr skttaest   t e  = 4
-2s e5q 1=191 tic8064k
-=610 cpu=2 pid=5 name=glres p s ta te = 4  
-  seq= 192 t i2ck=6 6 14410 cpu=2 pi60
-d=5 name=ls state=4
-seiqnit =1 93 t   ick=610       c2p u7= 3611 p6id=5 na0
-me=ls state=4
-seq=194 tick=610kil cpul=0     p   i    2 d=8 5 3name=ls54 sta6t4e
-=4
-seq=195 tickl=n61 0 cpu            =2 92  3p5i2d64
-ls=   5  n am e =ls  state= 4
-   s 2eq= 196 tic1k=60 10 c42p832
-u=0 pid=5 namme=lsk dstate=4
-seiq=r19 7  ti  c k=610 cpu=2     pi 2d =5 na1me=1l s355 s2t0a
-te=4
-seq=198 tick=61r0m  c    pu=0 p   id= 5  name =  l2 s12  35s5t12at
-e=4
-seq=199 tish c  k=6    10 c  p  u  =22 1 3 5826p4id
-=5 name=ls state=4
-seq=s2tre00 tssfics k =61 0   c p u=0 p2id 1=5 4 3n63am9e2=
-ls state=4
-seq=2u01 ticsek=61rtests0 c p u=0 pi d= 5 nam e= 2ls st 15a 1964t3e2
-g=r4ind
-s eq =2   02 t     ic2k =16 65110 cpu=17 9pi2d=5
- name=ls statew=4
-c s e q=203 t    i c k=6    120  cpu=01 p7id=5 name= ls 3state=47
-seq=26804 tic8k
-=611 cpu=1 pid=5 name=lzs osmtatebie  =   4
-se   q 2 18 34=20825 tic4
-k=611 cpu=1 pid=l5o ngstamresse = ls     sta2t e1=9 4
-se37q=520126 
-tick=611 cpu=0fo pid=5 name=ls srphtate=a4
-n   s  eq = 207  2 20 tic3k=6631041 
-cpu=2 pid=5 name=ls state=4
-sdeqo=r2p08h tani c   k  =61  1 cpu=2 211  pid3=57454
- name=ls state=4
-seq=209 tick=6cs11c at    cpu= 0      p2id=5  nam22 3570e=l4
-s statec=sexp4
-soreqt=21 0   t  ic k 2=611 2 3c 35pu9=922 pi
-d=5 name=ls state=4
-secq=on211 tsioclke =     61 1  c3 2p4u=2  0
-pid$=5 name=ls  state=4
-seq=212 tick=611 cpu=0 pid=5 name=ls state=4
-seq=213 tick=611 cpu=2 pid=5 name=ls state=4
-seq=214 tick=611 cpu=2 pid=5 name=ls state=4
-seq=215 tick=611 cpu=0 pid=5 name=ls state=4
-seq=216 tick=611 cpu=1 pid=5 name=ls state=4
-seq=217 tick=611 cpu=1 pid=5 name=ls state=4
-seq=218 tick=611 cpu=0 pid=5 name=ls state=4
-seq=219 tick=611 cpu=2 pid=5 name=ls state=4
-seq=220 tick=611 cpu=2 pid=5 name=ls state=4
-seq=221 tick=611 cpu=0 pid=5 name=ls state=4
-seq=222 tick=611 cpu=2 pid=5 name=ls state=4
-seq=223 tick=611 cpu=2 pid=5 name=ls state=4
-seq=224 tick=612 cpu=1 pid=5 name=ls state=4
-seq=225 tick=613 cpu=1 pid=5 name=ls state=4
-seq=226 tick=613 cpu=2 pid=5 name=ls state=4
-seq=227 tick=613 cpu=2 pid=5 name=ls state=4
-seq=228 tick=613 cpu=1 pid=5 name=ls state=4
-seq=229 tick=613 cpu=2 pid=5 name=ls state=4
-seq=230 tick=613 cpu=0 pid=5 name=ls state=4
-seq=231 tick=613 cpu=0 pid=5 name=ls state=4
-seq=232 tick=614 cpu=1 pid=5 name=ls state=4
-seq=233 tick=614 cpu=2 pid=5 name=ls state=4
-seq=234 tick=614 cpu=0 pid=5 name=ls state=4
-seq=235 tick=614 cpu=2 pid=5 name=ls state=4
-seq=236 tick=614 cpu=2 pid=5 name=ls state=4
-seq=237 tick=614 cpu=2 pid=5 name=ls state=4
-seq=238 tick=614 cpu=1 pid=5 name=ls state=4
-seq=239 tick=614 cpu=1 pid=5 name=ls state=4
-seq=240 tick=614 cpu=2 pid=5 name=ls state=4
-seq=241 tick=614 cpu=1 pid=5 name=ls state=4
-seq=242 tick=614 cpu=0 pid=5 name=ls state=4
-seq=243 tick=614 cpu=2 pid=5 name=ls state=4
-seq=244 tick=615 cpu=1 pid=5 name=ls state=4
-seq=245 tick=615 cpu=2 pid=5 name=ls state=4
-seq=246 tick=615 cpu=1 pid=5 name=ls state=4
-seq=247 tick=615 cpu=1 pid=5 name=ls state=4
-seq=248 tick=615 cpu=0 pid=5 name=ls state=4
-seq=249 tick=615 cpu=1 pid=5 name=ls state=4
-seq=250 tick=615 cpu=2 pid=5 name=ls state=4
-seq=251 tick=615 cpu=1 pid=5 name=ls state=4
-seq=252 tick=615 cpu=0 pid=5 name=ls state=4
-seq=253 tick=615 cpu=1 pid=5 name=ls state=4
-seq=254 tick=615 cpu=2 pid=5 name=ls state=4
-seq=255 tick=615 cpu=2 pid=5 name=ls state=4
-seq=256 tick=615 cpu=1 pid=5 name=ls state=4
-seq=257 tick=615 cpu=1 pid=5 name=ls state=4
-seq=258 tick=615 cpu=2 pid=5 name=ls state=4
-seq=259 tick=615 cpu=2 pid=5 name=ls state=4
-seq=260 tick=616 cpu=0 pid=5 name=ls state=4
-seq=261 tick=616 cpu=0 pid=5 name=ls state=4
-seq=262 tick=616 cpu=0 pid=5 name=ls state=4
-seq=263 tick=616 cpu=0 pid=5 name=ls state=4
-seq=264 tick=616 cpu=2 pid=5 name=ls state=4
-seq=265 tick=616 cpu=2 pid=5 name=ls state=4
-seq=266 tick=616 cpu=2 pid=5 name=ls state=4
-seq=267 tick=616 cpu=0 pid=5 name=ls state=4
-seq=268 tick=617 cpu=0 pid=5 name=ls state=4
-seq=269 tick=617 cpu=2 pid=5 name=ls state=4
-seq=270 tick=617 cpu=2 pid=5 name=ls state=4
-seq=271 tick=617 cpu=2 pid=5 name=ls state=4
-seq=272 tick=617 cpu=2 pid=5 name=ls state=4
-seq=273 tick=617 cpu=0 pid=5 name=ls state=4
-seq=274 tick=617 cpu=2 pid=5 name=ls state=4
-seq=275 tick=617 cpu=2 pid=5 name=ls state=4
-seq=276 tick=618 cpu=0 pid=5 name=ls state=4
-seq=277 tick=618 cpu=2 pid=5 name=ls state=4
-seq=278 tick=618 cpu=0 pid=5 name=ls state=4
-seq=279 tick=618 cpu=2 pid=5 name=ls state=4
-seq=280 tick=618 cpu=1 pid=5 name=ls state=4
-seq=281 tick=618 cpu=1 pid=5 name=ls state=4
-seq=282 tick=618 cpu=2 pid=5 name=ls state=4
-seq=283 tick=618 cpu=0 pid=5 name=ls state=4
-seq=284 tick=618 cpu=1 pid=5 name=ls state=4
-seq=285 tick=619 cpu=1 pid=5 name=ls state=4
-seq=286 tick=619 cpu=2 pid=5 name=ls state=4
-seq=287 tick=619 cpu=2 pid=5 name=ls state=4
-seq=288 tick=619 cpu=2 pid=5 name=ls state=4
-seq=289 tick=619 cpu=2 pid=5 name=ls state=4
-seq=290 tick=619 cpu=1 pid=5 name=ls state=4
-seq=291 tick=619 cpu=2 pid=5 name=ls state=4
-seq=292 tick=619 cpu=2 pid=5 name=ls state=4
-seq=293 tick=619 cpu=0 pid=5 name=ls state=4
-seq=294 tick=620 cpu=2 pid=5 name=ls state=4
-seq=295 tick=621 cpu=1 pid=5 name=ls state=4
-seq=296 tick=621 cpu=1 pid=5 name=ls state=4
-seq=297 tick=621 cpu=0 pid=5 name=ls state=4
-seq=298 tick=621 cpu=1 pid=5 name=ls state=4
-seq=299 tick=621 cpu=1 pid=5 name=ls state=4
-seq=300 tick=621 cpu=0 pid=5 name=ls state=4
-seq=301 tick=621 cpu=1 pid=5 name=ls state=4
-seq=302 tick=621 cpu=2 pid=5 name=ls state=4
-seq=303 tick=621 cpu=0 pid=5 name=ls state=4
-seq=304 tick=621 cpu=1 pid=5 name=ls state=4
-seq=305 tick=621 cpu=0 pid=5 name=ls state=4
-seq=306 tick=621 cpu=2 pid=5 name=ls state=4
-seq=307 tick=621 cpu=1 pid=5 name=ls state=4
-seq=308 tick=621 cpu=0 pid=5 name=ls state=4
-seq=309 tick=622 cpu=1 pid=5 name=ls state=4
-seq=310 tick=622 cpu=0 pid=5 name=ls state=4
-seq=311 tick=622 cpu=2 pid=5 name=ls state=4
-seq=312 tick=622 cpu=1 pid=5 name=ls state=4
-seq=313 tick=622 cpu=0 pid=5 name=ls state=4
-seq=314 tick=622 cpu=1 pid=5 name=ls state=4
-seq=315 tick=622 cpu=1 pid=5 name=ls state=4
-seq=316 tick=623 cpu=1 pid=5 name=ls state=4
-seq=317 tick=623 cpu=2 pid=5 name=ls state=4
-seq=318 tick=623 cpu=0 pid=5 name=ls state=4
-seq=319 tick=623 cpu=0 pid=5 name=ls state=4
-seq=320 tick=623 cpu=0 pid=5 name=ls state=4
-seq=321 tick=623 cpu=0 pid=5 name=ls state=4
-seq=322 tick=623 cpu=0 pid=5 name=ls state=4
-seq=323 tick=623 cpu=2 pid=5 name=ls state=4
-seq=324 tick=623 cpu=2 pid=5 name=ls state=4
-seq=325 tick=623 cpu=0 pid=5 name=ls state=4
-seq=326 tick=623 cpu=1 pid=5 name=ls state=4
-seq=327 tick=623 cpu=0 pid=5 name=ls state=4
-seq=328 tick=623 cpu=1 pid=5 name=ls state=4
-seq=329 tick=623 cpu=0 pid=5 name=ls state=4
-seq=330 tick=623 cpu=1 pid=5 name=ls state=4
-seq=331 tick=624 cpu=0 pid=5 name=ls state=4
-seq=332 tick=624 cpu=1 pid=5 name=ls state=4
-seq=333 tick=624 cpu=0 pid=5 name=ls state=4
-seq=334 tick=624 cpu=1 pid=5 name=ls state=4
-seq=335 tick=624 cpu=0 pid=5 name=ls state=4
-seq=336 tick=625 cpu=2 pid=5 name=ls state=4
-seq=337 tick=625 cpu=0 pid=5 name=ls state=4
-seq=338 tick=626 cpu=2 pid=5 name=ls state=4
-seq=339 tick=626 cpu=2 pid=5 name=ls state=4
-seq=340 tick=626 cpu=1 pid=5 name=ls state=4
-seq=341 tick=626 cpu=1 pid=5 name=ls state=4
-seq=342 tick=626 cpu=2 pid=5 name=ls state=4
-seq=343 tick=626 cpu=2 pid=5 name=ls state=4
-seq=344 tick=626 cpu=1 pid=5 name=ls state=4
-seq=345 tick=626 cpu=2 pid=5 name=ls state=4
-seq=346 tick=626 cpu=0 pid=5 name=ls state=4
-seq=347 tick=626 cpu=2 pid=5 name=ls state=4
-seq=348 tick=626 cpu=2 pid=5 name=ls state=4
-seq=349 tick=626 cpu=1 pid=5 name=ls state=4
-seq=350 tick=626 cpu=1 pid=5 name=ls state=4
-seq=351 tick=627 cpu=0 pid=5 name=ls state=4
-seq=352 tick=627 cpu=2 pid=5 name=ls state=4
-seq=353 tick=627 cpu=2 pid=5 name=ls state=4
-seq=354 tick=627 cpu=1 pid=5 name=ls state=4
-seq=355 tick=627 cpu=2 pid=5 name=ls state=4
-seq=356 tick=627 cpu=2 pid=5 name=ls state=4
-seq=357 tick=628 cpu=2 pid=5 name=ls state=4
-seq=358 tick=628 cpu=1 pid=5 name=ls state=4
-seq=359 tick=628 cpu=1 pid=5 name=ls state=4
-seq=360 tick=628 cpu=2 pid=5 name=ls state=4
-seq=361 tick=628 cpu=1 pid=5 name=ls state=4
-seq=362 tick=628 cpu=1 pid=5 name=ls state=4
-seq=363 tick=628 cpu=2 pid=5 name=ls state=4
-seq=364 tick=628 cpu=1 pid=5 name=ls state=4
-seq=365 tick=628 cpu=2 pid=5 name=ls state=4
-seq=366 tick=628 cpu=1 pid=5 name=ls state=4
-seq=367 tick=629 cpu=2 pid=5 name=ls state=4
-seq=368 tick=629 cpu=1 pid=5 name=ls state=4
-seq=369 tick=629 cpu=2 pid=5 name=ls state=4
-seq=370 tick=629 cpu=1 pid=5 name=ls state=4
-seq=371 tick=629 cpu=1 pid=5 name=ls state=4
-seq=372 tick=629 cpu=1 pid=5 name=ls state=4
-seq=373 tick=629 cpu=2 pid=5 name=ls state=4
-seq=374 tick=629 cpu=1 pid=5 name=ls state=4
-seq=375 tick=630 cpu=1 pid=5 name=ls state=4
-seq=376 tick=630 cpu=2 pid=5 name=ls state=4
-seq=377 tick=630 cpu=0 pid=3 name=sh state=4
-seq=378 tick=631 cpu=1 pid=3 name=sh state=4
-seq=379 tick=631 cpu=1 pid=3 name=sh state=4
+$ csexport &
+$ EV {"seq":0,"tick":2,"cpu":1,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":2,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":2,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":2,"cpu":1,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":2,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":3,"cpu":1,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":3,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":3,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":4,"cpu":1,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":4,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":4,"cpu":1,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":4,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":4,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":4,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":4,"cpu":0,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":4,"cpu":1,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":4,"cpu":2,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":4,"cpu":0,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":4,"cpu":2,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":4,"cpu":1,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":5,"cpu":1,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":5,"cpu":2,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":6,"cpu":0,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":6,"cpu":2,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":7,"cpu":0,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":7,"cpu":2,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":7,"cpu":0,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":148,"cpu":2,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":148,"cpu":2,"pid":3,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":148,"cpu":2,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":149,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":149,"cpu":0,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":149,"cpu":1,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":149,"cpu":1,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":149,"cpu":1,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":149,"cpu":0,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":149,"cpu":2,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":0,"tick":150,"cpu":0,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
