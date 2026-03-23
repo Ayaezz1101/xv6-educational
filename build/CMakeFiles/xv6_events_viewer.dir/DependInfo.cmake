@@ -9,9 +9,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "" "xv6_events_viewer_autogen/timestamp" "custom" "xv6_events_viewer_autogen/deps"
-  "/home/ruba/xv6-test/main.cpp" "CMakeFiles/xv6_events_viewer.dir/main.cpp.o" "gcc" "CMakeFiles/xv6_events_viewer.dir/main.cpp.o.d"
-  "/home/ruba/xv6-test/build/xv6_events_viewer_autogen/mocs_compilation.cpp" "CMakeFiles/xv6_events_viewer.dir/xv6_events_viewer_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/xv6_events_viewer.dir/xv6_events_viewer_autogen/mocs_compilation.cpp.o.d"
-  "" "xv6_events_viewer" "gcc" "CMakeFiles/xv6_events_viewer.dir/link.d"
+  "/mnt/c/Users/ASUS/rubaa/main.cpp" "CMakeFiles/xv6_events_viewer.dir/main.cpp.o" "gcc" "CMakeFiles/xv6_events_viewer.dir/main.cpp.o.d"
+  "/mnt/c/Users/ASUS/rubaa/build/xv6_events_viewer_autogen/mocs_compilation.cpp" "CMakeFiles/xv6_events_viewer.dir/xv6_events_viewer_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/xv6_events_viewer.dir/xv6_events_viewer_autogen/mocs_compilation.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

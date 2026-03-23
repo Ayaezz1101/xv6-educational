@@ -1,3 +1,6 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/xv6_events_viewer_autogen_timestamp_deps"
+)
 
 # Per-language clean rules from dependency scanning.
 foreach(lang )

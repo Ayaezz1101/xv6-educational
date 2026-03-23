@@ -1,210 +1,823 @@
+riscv64-unknown-elf-gcc -march=rv64gc -g -c -o kernel/entry.o kernel/entry.S
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/start.o kernel/start.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/console.o kernel/console.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/printf.o kernel/printf.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/uart.o kernel/uart.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/kalloc.o kernel/kalloc.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/spinlock.o kernel/spinlock.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/string.o kernel/string.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/main.o kernel/main.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/vm.o kernel/vm.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/proc.o kernel/proc.c
+riscv64-unknown-elf-gcc -march=rv64gc -g -c -o kernel/swtch.o kernel/swtch.S
+riscv64-unknown-elf-gcc -march=rv64gc -g -c -o kernel/trampoline.o kernel/trampoline.S
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/trap.o kernel/trap.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/syscall.o kernel/syscall.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/sysproc.o kernel/sysproc.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/bio.o kernel/bio.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/fs.o kernel/fs.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/log.o kernel/log.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/sleeplock.o kernel/sleeplock.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/file.o kernel/file.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/pipe.o kernel/pipe.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/exec.o kernel/exec.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/sysfile.o kernel/sysfile.c
+riscv64-unknown-elf-gcc -march=rv64gc -g -c -o kernel/kernelvec.o kernel/kernelvec.S
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/plic.o kernel/plic.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/virtio_disk.o kernel/virtio_disk.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/cslog.o kernel/cslog.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/syscslog.o kernel/syscslog.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o kernel/ringbuf.o kernel/ringbuf.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T kernel/kernel.ld -o kernel/kernel kernel/entry.o kernel/start.o kernel/console.o kernel/printf.o kernel/uart.o kernel/kalloc.o kernel/spinlock.o kernel/string.o kernel/main.o kernel/vm.o kernel/proc.o kernel/swtch.o kernel/trampoline.o kernel/trap.o kernel/syscall.o kernel/sysproc.o kernel/bio.o kernel/fs.o kernel/log.o kernel/sleeplock.o kernel/file.o kernel/pipe.o kernel/exec.o kernel/sysfile.o kernel/kernelvec.o kernel/plic.o kernel/virtio_disk.o kernel/cslog.o kernel/syscslog.o kernel/ringbuf.o 
+riscv64-unknown-elf-objdump -S kernel/kernel > kernel/kernel.asm
+riscv64-unknown-elf-objdump -t kernel/kernel | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > kernel/kernel.sym
+gcc -Wno-unknown-attributes -I. -o mkfs/mkfs mkfs/mkfs.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/ulib.o user/ulib.c
+perl user/usys.pl > user/usys.S
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie -c -o user/usys.o user/usys.S
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/printf.o user/printf.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/umalloc.o user/umalloc.c
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/cat.o user/cat.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_cat user/cat.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_cat > user/cat.asm
+riscv64-unknown-elf-objdump -t user/_cat | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/cat.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/echo.o user/echo.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_echo user/echo.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_echo > user/echo.asm
+riscv64-unknown-elf-objdump -t user/_echo | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/echo.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/forktest.o user/forktest.c
+# forktest has less library code linked in - needs to be small
+# in order to be able to max out the proc table.
+riscv64-unknown-elf-ld -z max-page-size=4096 -N -e main -Ttext 0 -o user/_forktest user/forktest.o user/ulib.o user/usys.o
+riscv64-unknown-elf-objdump -S user/_forktest > user/forktest.asm
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/grep.o user/grep.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_grep user/grep.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_grep > user/grep.asm
+riscv64-unknown-elf-objdump -t user/_grep | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/grep.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/init.o user/init.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_init user/init.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_init > user/init.asm
+riscv64-unknown-elf-objdump -t user/_init | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/init.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/kill.o user/kill.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_kill user/kill.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_kill > user/kill.asm
+riscv64-unknown-elf-objdump -t user/_kill | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/kill.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/ln.o user/ln.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_ln user/ln.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_ln > user/ln.asm
+riscv64-unknown-elf-objdump -t user/_ln | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/ln.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/ls.o user/ls.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_ls user/ls.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_ls > user/ls.asm
+riscv64-unknown-elf-objdump -t user/_ls | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/ls.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/mkdir.o user/mkdir.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_mkdir user/mkdir.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_mkdir > user/mkdir.asm
+riscv64-unknown-elf-objdump -t user/_mkdir | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/mkdir.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/rm.o user/rm.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_rm user/rm.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_rm > user/rm.asm
+riscv64-unknown-elf-objdump -t user/_rm | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/rm.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/sh.o user/sh.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_sh user/sh.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_sh > user/sh.asm
+riscv64-unknown-elf-objdump -t user/_sh | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/sh.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/stressfs.o user/stressfs.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_stressfs user/stressfs.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_stressfs > user/stressfs.asm
+riscv64-unknown-elf-objdump -t user/_stressfs | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/stressfs.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/usertests.o user/usertests.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_usertests user/usertests.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_usertests > user/usertests.asm
+riscv64-unknown-elf-objdump -t user/_usertests | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/usertests.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/grind.o user/grind.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_grind user/grind.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_grind > user/grind.asm
+riscv64-unknown-elf-objdump -t user/_grind | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/grind.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/wc.o user/wc.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_wc user/wc.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_wc > user/wc.asm
+riscv64-unknown-elf-objdump -t user/_wc | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/wc.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/zombie.o user/zombie.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_zombie user/zombie.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_zombie > user/zombie.asm
+riscv64-unknown-elf-objdump -t user/_zombie | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/zombie.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/logstress.o user/logstress.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_logstress user/logstress.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_logstress > user/logstress.asm
+riscv64-unknown-elf-objdump -t user/_logstress | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/logstress.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/forphan.o user/forphan.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_forphan user/forphan.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_forphan > user/forphan.asm
+riscv64-unknown-elf-objdump -t user/_forphan | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/forphan.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/dorphan.o user/dorphan.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_dorphan user/dorphan.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_dorphan > user/dorphan.asm
+riscv64-unknown-elf-objdump -t user/_dorphan | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/dorphan.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/cscat.o user/cscat.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_cscat user/cscat.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_cscat > user/cscat.asm
+riscv64-unknown-elf-objdump -t user/_cscat | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/cscat.sym
+riscv64-unknown-elf-gcc -Wall -Werror -Wno-unknown-attributes -O -fno-omit-frame-pointer -ggdb -gdwarf-2 -march=rv64gc -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -fno-builtin-strncpy -fno-builtin-strncmp -fno-builtin-strlen -fno-builtin-memset -fno-builtin-memmove -fno-builtin-memcmp -fno-builtin-log -fno-builtin-bzero -fno-builtin-strchr -fno-builtin-exit -fno-builtin-malloc -fno-builtin-putc -fno-builtin-free -fno-builtin-memcpy -Wno-main -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/csexport.o user/csexport.c
+riscv64-unknown-elf-ld -z max-page-size=4096 -T user/user.ld -o user/_csexport user/csexport.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-unknown-elf-objdump -S user/_csexport > user/csexport.asm
+riscv64-unknown-elf-objdump -t user/_csexport | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/csexport.sym
+mkfs/mkfs fs.img README user/_cat user/_echo user/_forktest user/_grep user/_init user/_kill user/_ln user/_ls user/_mkdir user/_rm user/_sh user/_stressfs user/_usertests user/_grind user/_wc user/_zombie user/_logstress user/_forphan user/_dorphan user/_cscat user/_csexport
+nmeta 47 (boot, super, log blocks 31, inode blocks 13, bitmap blocks 1) blocks 1953 total 2000
+balloc: first 1000 blocks have been allocated
+balloc: write bitmap block at sector 46
 qemu-system-riscv64 -machine virt -bios none -kernel kernel/kernel -m 128M -smp 3 -nographic -global virtio-mmio.force-legacy=false -drive file=fs.img,if=none,format=raw,id=x0 -device virtio-blk-device,drive=x0,bus=virtio-mmio-bus.0
 
 xv6 kernel is booting
 
-hart 1 starting
 hart 2 starting
+hart 1 starting
 init: starting sh
 $ csexport &
-$ EV {"seq":1,"tick":2,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":2,"tick":2,"cpu":1,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":3,"tick":2,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":4,"tick":3,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":5,"tick":3,"cpu":1,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":6,"tick":3,"cpu":1,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":7,"tick":3,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":8,"tick":3,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":9,"tick":3,"cpu":1,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":10,"tick":3,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":11,"tick":3,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":12,"tick":3,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":13,"tick":3,"cpu":1,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":14,"tick":3,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":15,"tick":3,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":16,"tick":3,"cpu":1,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":17,"tick":3,"cpu":2,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":18,"tick":3,"cpu":0,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":19,"tick":3,"cpu":2,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":20,"tick":3,"cpu":1,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":21,"tick":3,"cpu":0,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":22,"tick":3,"cpu":1,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":23,"tick":3,"cpu":0,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":24,"tick":3,"cpu":2,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":25,"tick":3,"cpu":0,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":26,"tick":3,"cpu":1,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":27,"tick":3,"cpu":0,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":28,"tick":3,"cpu":2,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":29,"tick":4,"cpu":1,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
-EV {"seq":30,"tick":63,"cpu":2,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
-EV {"seq":31,"tick":63,"cpu":2,"pid":3,"name":"sh","state":4,"type":"ON_CPU"}
-EV {"seq":32,"tick":64,"cpu":2,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
-EV {"seq":33,"tick":64,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
-EV {"seq":34,"tick":64,"cpu":1,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
-EV {"seq":35,"tick":64,"cpu":0,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
-EV {"seq":36,"tick":64,"cpu":2,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
-EV {"seq":37,"tick":64,"cpu":1,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
-EV {"seq":38,"tick":64,"cpu":2,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
-EV {"seq":39,"tick":64,"cpu":1,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
-EV {"seq":40,"tick":64,"cpu":1,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
+$ EV {"seq":1,"tick":4,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":2,"tick":5,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":3,"tick":6,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":4,"tick":6,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":5,"tick":6,"cpu":1,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":6,"tick":6,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":7,"tick":6,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":8,"tick":7,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":9,"tick":7,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":10,"tick":7,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":11,"tick":7,"cpu":2,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":12,"tick":7,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":13,"tick":8,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":14,"tick":8,"cpu":0,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":15,"tick":8,"cpu":0,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":16,"tick":9,"cpu":1,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":17,"tick":9,"cpu":1,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":18,"tick":9,"cpu":0,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":19,"tick":9,"cpu":0,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":20,"tick":9,"cpu":2,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":21,"tick":9,"cpu":1,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":22,"tick":10,"cpu":2,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":23,"tick":10,"cpu":0,"pid":2,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":24,"tick":10,"cpu":0,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":25,"tick":81,"cpu":1,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":26,"tick":81,"cpu":1,"pid":3,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":27,"tick":81,"cpu":1,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":28,"tick":81,"cpu":1,"pid":1,"name":"init","state":4,"type":"ON_CPU"}
+EV {"seq":29,"tick":81,"cpu":1,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":30,"tick":81,"cpu":0,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":31,"tick":81,"cpu":0,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":32,"tick":81,"cpu":2,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":33,"tick":81,"cpu":1,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":34,"tick":81,"cpu":2,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":35,"tick":81,"cpu":0,"pid":4,"name":"sh","state":4,"type":"ON_CPU"}
+echo d
+EV {"seq":36,"tick":211,"cpu":2,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":37,"tick":211,"cpu":0,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":38,"tick":211,"cpu":0,"pid":5,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":39,"tick":211,"cpu":2,"pid":5,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":40,"tick":212,"cpu":2,"pid":5,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":41,"tick":212,"cpu":0,"pid":5,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":42,"tick":212,"cpu":0,"pid":5,"name":"sh","state":4,"type":"ON_CPU"}
+dEV {"seq":43,"tick":213,"cpu":0,"pid":5,"name":"echo","state":4,"type":"ON_CPU"}
+
+EV {"seq":44,"tick":214,"cpu":1,"pid":5,"name":"echo","state":4,"type":"ON_CPU"}
+$ EV {"seq":45,"tick":215,"cpu":1,"pid":5,"name":"echo","state":4,"type":"ON_CPU"}
+EV {"seq":46,"tick":217,"cpu":1,"pid":5,"name":"echo","state":4,"type":"ON_CPU"}
+EV {"seq":47,"tick":218,"cpu":1,"pid":5,"name":"echo","state":4,"type":"ON_CPU"}
+EV {"seq":48,"tick":220,"cpu":2,"pid":5,"name":"echo","state":4,"type":"ON_CPU"}
+EV {"seq":49,"tick":221,"cpu":2,"pid":5,"name":"echo","state":4,"type":"ON_CPU"}
+EV {"seq":50,"tick":223,"cpu":1,"pid":5,"name":"echo","state":4,"type":"ON_CPU"}
+EV {"seq":51,"tick":223,"cpu":2,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":52,"tick":224,"cpu":2,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":53,"tick":224,"cpu":1,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
 ls
-EV {"seq":41,"tick":233,"cpu":0,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
-EV {"s.eq ":   4 2 ,        1" 1tick ":2133,"0c2p4
-u":0,"pid".:.   5 ,  "n  ame "  :  1 1 "sh","s1024
-tate":4R,"tEADMEy    pe" :"  O N_CP 2 U"}
-E2 2V {"425
-seq":43,"tcaictk   ":2 3 3   ,"cpu":1    2," pid":35, 3"6680
-name":"sh",e"sctahote":4,"     t     y pe2":"ON 4 3_CP5U54"}4
-EV
- {"seqf"o:44,rk"ttesick":t2 3 3 , " c  2 5 180pu64
-gre"p: 2,      "p   id" :5,2 6"n 4a4m16e"0
-:"sh","state":4,"tyinpite      "  :  " 2 ON_7C PU3"}
-EV5 {"9s36e
-q":45,"tick":233,k"iclpl u " : 2   ," pid"   2 8 35:45,64
-ln   "na me":  "sh  "  ,"sta t e" 2 9 :35264
-4,"typel":s   "  O N    _   2C 1P0 4283U2
-"}
-EV {mk"dseir q":   4     6 ,"ti2c k":121 3335,"5cpu20
-rm      "   :    2 12 355102,"p
-id":5,"name":"sh",sh" s t   a t   e":4   ," 2t y13pe" :"O582N_6CPU4
-"}
-EV {"seq":47,"tick":233stre,"cspu":sf0s     ,  2"p i14d 3"639:52
-,"name":"sh","state":4use,rte"sttype":s    " ON_CPU"}
-E 2V  1{"5seq 1964"3:48,"tick"2
-:233g,rind  "  c pu":     2,"2 16pid 51":7592,
-"name":"sh","state":4,w"c            ty 2 1p7 3768e":8
-"ON_CPU"}
-EV {"seq"zomb:i49,e " t     i c k"2 :21348 ,"c3p4u824
-":0,"pid":5,"name":"llos"g,s"statresste" :4   , "type "2: 19 "ON_CP3751U2
-"}
-EV {"seq":50,"tick":234f,or"pchpu":1an   ," p    2id" :5,"nam20 e"36:"ls30","st4
-ate":4,"type":"ON_CPU"}
-EV {"seqd"o:rphan5     1   ,2"t ic21 3574k":24
-34,"cscactpu "  : 2 ,"pid": 5,  " name":"l s2 "2,2" s35704
-tate":4,"type":"ON_CPU"}
-cEseVx {por"t s      2 eq2"3:5 23,"5t99ick":22
-34,"cpu":2,"pid":5,"name":"ls","stcaotnse"ol:4,e "     t  ype"3: 2"O4 N_C0PU"}
-E
-V {"seq":53,"tick":234,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON$_CP U"}
-EV {"seq":54,"tick":234,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":55,"tick":234,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":56,"tick":234,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":57,"tick":234,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":58,"tick":234,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":59,"tick":234,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":60,"tick":235,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":61,"tick":235,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":62,"tick":235,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":63,"tick":235,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":64,"tick":235,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":65,"tick":235,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":66,"tick":235,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":67,"tick":235,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":68,"tick":235,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":69,"tick":235,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":70,"tick":235,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":71,"tick":236,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":72,"tick":236,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":73,"tick":236,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":74,"tick":236,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":75,"tick":236,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":76,"tick":236,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":77,"tick":236,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":78,"tick":236,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":79,"tick":236,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":80,"tick":237,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":81,"tick":237,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":82,"tick":237,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":83,"tick":237,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":84,"tick":237,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":85,"tick":237,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":86,"tick":237,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":87,"tick":237,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":88,"tick":238,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":89,"tick":238,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":90,"tick":238,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":91,"tick":238,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":92,"tick":238,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":93,"tick":238,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":94,"tick":238,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":95,"tick":238,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":96,"tick":238,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":97,"tick":239,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":98,"tick":239,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":99,"tick":239,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":100,"tick":239,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":101,"tick":239,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":102,"tick":239,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":103,"tick":239,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":104,"tick":239,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":105,"tick":239,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":106,"tick":239,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":107,"tick":239,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":108,"tick":240,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":109,"tick":240,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":110,"tick":240,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":111,"tick":240,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":112,"tick":240,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":113,"tick":240,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":114,"tick":240,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":115,"tick":240,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":116,"tick":240,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":117,"tick":240,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":118,"tick":240,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":119,"tick":240,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":120,"tick":241,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":121,"tick":241,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":122,"tick":241,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":123,"tick":241,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":124,"tick":241,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":125,"tick":241,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":126,"tick":241,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":127,"tick":241,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":128,"tick":241,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":129,"tick":241,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":130,"tick":241,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":131,"tick":241,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":132,"tick":241,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":133,"tick":241,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":134,"tick":242,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":135,"tick":242,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":136,"tick":242,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":137,"tick":242,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":138,"tick":242,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":139,"tick":242,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":140,"tick":242,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":141,"tick":242,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":142,"tick":242,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":143,"tick":242,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":144,"tick":242,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":145,"tick":242,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":146,"tick":243,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":147,"tick":243,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":148,"tick":243,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":149,"tick":243,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":150,"tick":243,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":151,"tick":243,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":152,"tick":243,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":153,"tick":243,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":154,"tick":243,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":155,"tick":243,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":156,"tick":244,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":157,"tick":244,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":158,"tick":244,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":159,"tick":244,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":160,"tick":244,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":161,"tick":244,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":162,"tick":244,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":163,"tick":244,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":164,"tick":244,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":165,"tick":244,"cpu":2,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":166,"tick":244,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":167,"tick":245,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":168,"tick":245,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":169,"tick":245,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":170,"tick":245,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":171,"tick":245,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":172,"tick":245,"cpu":1,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":173,"tick":245,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":174,"tick":246,"cpu":0,"pid":5,"name":"ls","state":4,"type":"ON_CPU"}
-EV {"seq":175,"tick":246,"cpu":2,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
-EV {"seq":176,"tick":246,"cpu":2,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":54,"tick":319,"cpu":2,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+. EV {"seq":55,"tick":319,"cpu":2,"pid":6,"name":"sh","state":4,"type":"ON_CPU"}
+ EV {"seq":56,"tick":319,"cpu":2,"pid":6,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":57,"tick":320,"cpu":0,"pid":6,"name":"sh","state":4,"type":"ON_CPU"}
+     EV {"seq":58,"tick":320,"cpu":0,"pid":6,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":59,"tick":320,"cpu":1,"pid":6,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":60,"tick":321,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":61,"tick":323,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":62,"tick":324,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":63,"tick":325,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":64,"tick":326,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":65,"tick":328,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":66,"tick":329,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":67,"tick":330,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":68,"tick":331,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":69,"tick":332,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":70,"tick":333,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":71,"tick":336,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":72,"tick":337,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":73,"tick":339,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":74,"tick":340,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ 1 1 1EV {"seq":75,"tick":341,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+024
+..EV {"seq":76,"tick":343,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":77,"tick":344,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":78,"tick":345,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":79,"tick":347,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":80,"tick":348,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":81,"tick":348,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+       1 1 1024
+EV {"seq":82,"tick":349,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+REV {"seq":83,"tick":351,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":84,"tick":352,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EEV {"seq":85,"tick":353,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":86,"tick":354,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ADME   EV {"seq":87,"tick":355,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":88,"tick":356,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":89,"tick":357,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":90,"tick":357,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":91,"tick":358,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":92,"tick":360,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":93,"tick":361,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ 2EV {"seq":94,"tick":362,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ 2 2425EV {"seq":95,"tick":363,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":96,"tick":365,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+EV {"seq":97,"tick":366,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+cEV {"seq":98,"tick":368,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+aEV {"seq":99,"tick":370,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":100,"tick":371,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+t EV {"seq":101,"tick":372,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":102,"tick":373,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":103,"tick":374,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":104,"tick":375,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":105,"tick":376,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":106,"tick":377,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":107,"tick":378,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":108,"tick":379,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+   EV {"seq":109,"tick":380,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":110,"tick":381,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":111,"tick":383,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":112,"tick":384,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+    EV {"seq":113,"tick":385,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":114,"tick":387,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":115,"tick":388,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2EV {"seq":116,"tick":389,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":117,"tick":391,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":118,"tick":392,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":119,"tick":394,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+3 36792EV {"seq":120,"tick":395,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+EV {"seq":121,"tick":397,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":122,"tick":398,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":123,"tick":399,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":124,"tick":401,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":125,"tick":402,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ecEV {"seq":126,"tick":403,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":127,"tick":404,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":128,"tick":405,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":129,"tick":407,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":130,"tick":408,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+hEV {"seq":131,"tick":409,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":132,"tick":410,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":133,"tick":411,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":134,"tick":412,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":135,"tick":414,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":136,"tick":415,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":137,"tick":417,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":138,"tick":419,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+oEV {"seq":139,"tick":420,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":140,"tick":421,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":141,"tick":423,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":142,"tick":424,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":143,"tick":425,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":144,"tick":427,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":145,"tick":428,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":146,"tick":429,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":147,"tick":430,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":148,"tick":431,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":149,"tick":432,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":150,"tick":433,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":151,"tick":434,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":152,"tick":436,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":153,"tick":437,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":154,"tick":438,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":155,"tick":440,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":156,"tick":441,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":157,"tick":442,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":158,"tick":444,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2EV {"seq":159,"tick":445,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ 4 EV {"seq":160,"tick":447,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+3EV {"seq":161,"tick":448,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+5640
+forkEV {"seq":162,"tick":450,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":163,"tick":451,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+tEV {"seq":164,"tick":452,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":165,"tick":454,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+eEV {"seq":166,"tick":455,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+st   EV {"seq":167,"tick":456,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":168,"tick":458,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":169,"tick":459,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":170,"tick":460,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":171,"tick":461,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":172,"tick":463,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2 5EV {"seq":173,"tick":464,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":174,"tick":465,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+1EV {"seq":175,"tick":467,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":176,"tick":467,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":177,"tick":468,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":178,"tick":470,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":179,"tick":471,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":180,"tick":472,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+7EV {"seq":181,"tick":474,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+4EV {"seq":182,"tick":475,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+00EV {"seq":183,"tick":476,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":184,"tick":477,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":185,"tick":478,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":186,"tick":480,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":187,"tick":482,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+EV {"seq":188,"tick":483,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+gEV {"seq":189,"tick":484,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":190,"tick":485,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":191,"tick":486,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":192,"tick":488,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":193,"tick":489,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":194,"tick":490,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":195,"tick":492,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+rep EV {"seq":196,"tick":493,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":197,"tick":494,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":198,"tick":496,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":199,"tick":498,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":200,"tick":499,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":201,"tick":500,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":202,"tick":501,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":203,"tick":503,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":204,"tick":503,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":205,"tick":504,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":206,"tick":506,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+   EV {"seq":207,"tick":507,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":208,"tick":508,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":209,"tick":510,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":210,"tick":511,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2EV {"seq":211,"tick":512,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":212,"tick":513,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":213,"tick":514,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":214,"tick":516,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ 6 EV {"seq":215,"tick":517,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+4EV {"seq":216,"tick":518,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+0240
+EV {"seq":217,"tick":519,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":218,"tick":521,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":219,"tick":522,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+initEV {"seq":220,"tick":523,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":221,"tick":525,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":222,"tick":526,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":223,"tick":527,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":224,"tick":529,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":225,"tick":530,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":226,"tick":531,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":227,"tick":532,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":228,"tick":534,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":229,"tick":535,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":230,"tick":536,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":231,"tick":538,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":232,"tick":539,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":233,"tick":540,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":234,"tick":541,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+   2 7 3EV {"seq":235,"tick":541,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":236,"tick":541,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":237,"tick":542,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":238,"tick":543,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+6EV {"seq":239,"tick":544,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+0EV {"seq":240,"tick":546,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":241,"tick":547,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":242,"tick":548,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":243,"tick":550,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":244,"tick":551,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+8EV {"seq":245,"tick":552,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+8EV {"seq":246,"tick":553,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+EV {"seq":247,"tick":554,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+kill  EV {"seq":248,"tick":555,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":249,"tick":556,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":250,"tick":557,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":251,"tick":558,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":252,"tick":559,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":253,"tick":560,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":254,"tick":561,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":255,"tick":563,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+   2 8 3EV {"seq":256,"tick":564,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+5EV {"seq":257,"tick":565,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+5EV {"seq":258,"tick":566,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+7EV {"seq":259,"tick":567,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":260,"tick":569,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+6EV {"seq":261,"tick":570,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+EV {"seq":262,"tick":570,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+lEV {"seq":263,"tick":572,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":264,"tick":573,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+n EV {"seq":265,"tick":575,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":266,"tick":576,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":267,"tick":577,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":268,"tick":578,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":269,"tick":580,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":270,"tick":581,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":271,"tick":583,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":272,"tick":584,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":273,"tick":585,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":274,"tick":586,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":275,"tick":588,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":276,"tick":589,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":277,"tick":590,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":278,"tick":592,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":279,"tick":593,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":280,"tick":595,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ 2 9 3EV {"seq":281,"tick":596,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+5EV {"seq":282,"tick":598,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+384
+EV {"seq":283,"tick":599,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":284,"tick":601,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ls EV {"seq":285,"tick":602,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":286,"tick":604,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":287,"tick":605,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":288,"tick":607,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":289,"tick":608,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":290,"tick":609,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":291,"tick":610,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":292,"tick":612,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":293,"tick":613,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":294,"tick":614,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":295,"tick":615,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":296,"tick":617,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":297,"tick":618,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  2 10 38912
+EV {"seq":298,"tick":620,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":299,"tick":621,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+mEV {"seq":300,"tick":621,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+kEV {"seq":301,"tick":622,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+dEV {"seq":302,"tick":623,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":303,"tick":625,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+iEV {"seq":304,"tick":626,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+r EV {"seq":305,"tick":627,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":306,"tick":629,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":307,"tick":630,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":308,"tick":631,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+     EV {"seq":309,"tick":632,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":310,"tick":634,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":311,"tick":635,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":312,"tick":636,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":313,"tick":637,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2 1EV {"seq":314,"tick":637,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+1EV {"seq":315,"tick":638,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":316,"tick":639,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+3EV {"seq":317,"tick":640,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":318,"tick":641,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+5EV {"seq":319,"tick":642,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+64EV {"seq":320,"tick":644,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":321,"tick":645,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+0EV {"seq":322,"tick":646,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":323,"tick":647,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":324,"tick":648,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+EV {"seq":325,"tick":650,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+rEV {"seq":326,"tick":651,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+mEV {"seq":327,"tick":653,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":328,"tick":654,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":329,"tick":655,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":330,"tick":656,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":331,"tick":658,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":332,"tick":659,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+   EV {"seq":333,"tick":660,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":334,"tick":660,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":335,"tick":661,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":336,"tick":663,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":337,"tick":664,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":338,"tick":665,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":339,"tick":667,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":340,"tick":668,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":341,"tick":669,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":342,"tick":671,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":343,"tick":672,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2EV {"seq":344,"tick":673,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":345,"tick":674,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":346,"tick":675,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":347,"tick":677,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":348,"tick":677,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":349,"tick":678,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":350,"tick":680,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+1EV {"seq":351,"tick":681,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":352,"tick":682,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2EV {"seq":353,"tick":684,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":354,"tick":685,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":355,"tick":686,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+3EV {"seq":356,"tick":687,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+5EV {"seq":357,"tick":688,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+6EV {"seq":358,"tick":689,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":359,"tick":691,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":360,"tick":692,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+1EV {"seq":361,"tick":693,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":362,"tick":694,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+6
+EV {"seq":363,"tick":695,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":364,"tick":697,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+sh   EV {"seq":365,"tick":698,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":366,"tick":699,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":367,"tick":700,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+      EV {"seq":368,"tick":702,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":369,"tick":703,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":370,"tick":705,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":371,"tick":706,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ 2 EV {"seq":372,"tick":707,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+13 5EV {"seq":373,"tick":709,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+8EV {"seq":374,"tick":710,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+62EV {"seq":375,"tick":711,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+4EV {"seq":376,"tick":713,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+EV {"seq":377,"tick":714,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":378,"tick":715,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+sEV {"seq":379,"tick":716,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+tEV {"seq":380,"tick":718,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+reEV {"seq":381,"tick":719,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+sEV {"seq":382,"tick":720,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+sEV {"seq":383,"tick":721,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":384,"tick":722,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+fEV {"seq":385,"tick":723,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+sEV {"seq":386,"tick":724,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":387,"tick":725,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":388,"tick":726,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":389,"tick":728,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":390,"tick":729,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":391,"tick":730,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ 2 EV {"seq":392,"tick":731,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":393,"tick":732,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":394,"tick":734,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+14 36EV {"seq":395,"tick":735,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+48EV {"seq":396,"tick":736,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+8EV {"seq":397,"tick":737,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":398,"tick":737,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":399,"tick":738,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+EV {"seq":400,"tick":740,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+uEV {"seq":401,"tick":741,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":402,"tick":743,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":403,"tick":744,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":404,"tick":745,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+sEV {"seq":405,"tick":747,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+eEV {"seq":406,"tick":749,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+rEV {"seq":407,"tick":750,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+teEV {"seq":408,"tick":751,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+sEV {"seq":409,"tick":753,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+tEV {"seq":410,"tick":754,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":411,"tick":755,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+s EV {"seq":412,"tick":756,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+     2EV {"seq":413,"tick":758,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":414,"tick":759,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":415,"tick":760,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":416,"tick":761,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+15EV {"seq":417,"tick":763,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":418,"tick":764,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ 18EV {"seq":419,"tick":765,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":420,"tick":766,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+8EV {"seq":421,"tick":767,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+1EV {"seq":422,"tick":768,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":423,"tick":769,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+3EV {"seq":424,"tick":770,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+6EV {"seq":425,"tick":771,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":426,"tick":772,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+EV {"seq":427,"tick":774,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":428,"tick":775,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+grEV {"seq":429,"tick":776,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":430,"tick":777,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":431,"tick":778,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":432,"tick":780,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":433,"tick":781,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":434,"tick":782,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":435,"tick":784,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+inEV {"seq":436,"tick":785,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+d EV {"seq":437,"tick":787,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":438,"tick":788,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":439,"tick":789,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":440,"tick":790,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+   EV {"seq":441,"tick":792,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":442,"tick":793,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":443,"tick":794,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":444,"tick":795,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":445,"tick":796,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":446,"tick":797,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2 16 EV {"seq":447,"tick":798,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+52048
+EV {"seq":448,"tick":799,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+wcEV {"seq":449,"tick":800,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":450,"tick":801,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":451,"tick":801,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":452,"tick":802,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":453,"tick":804,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":454,"tick":805,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":455,"tick":806,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":456,"tick":807,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":457,"tick":808,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":458,"tick":810,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":459,"tick":811,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":460,"tick":812,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+     2 1EV {"seq":461,"tick":813,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+7EV {"seq":462,"tick":815,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":463,"tick":816,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ 3EV {"seq":464,"tick":817,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+7EV {"seq":465,"tick":818,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+7EV {"seq":466,"tick":820,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+6EV {"seq":467,"tick":821,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+8EV {"seq":468,"tick":822,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":469,"tick":823,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":470,"tick":825,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+zEV {"seq":471,"tick":826,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+oEV {"seq":472,"tick":827,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+mbieEV {"seq":473,"tick":829,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":474,"tick":830,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":475,"tick":832,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":476,"tick":833,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":477,"tick":834,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":478,"tick":835,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":479,"tick":837,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":480,"tick":838,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":481,"tick":839,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":482,"tick":840,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":483,"tick":842,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  2 EV {"seq":484,"tick":843,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+18 3EV {"seq":485,"tick":844,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+4EV {"seq":486,"tick":845,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":487,"tick":845,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+98EV {"seq":488,"tick":846,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+4EV {"seq":489,"tick":847,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+EV {"seq":490,"tick":849,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+loEV {"seq":491,"tick":851,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+gstress      2 EV {"seq":492,"tick":852,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+1EV {"seq":493,"tick":853,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":494,"tick":854,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":495,"tick":855,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":496,"tick":857,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+9 37576
+EV {"seq":497,"tick":858,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":498,"tick":859,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":499,"tick":859,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":500,"tick":860,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":501,"tick":862,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":502,"tick":863,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+fEV {"seq":503,"tick":864,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+orpEV {"seq":504,"tick":866,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+hEV {"seq":505,"tick":867,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+aEV {"seq":506,"tick":868,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+nEV {"seq":507,"tick":869,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":508,"tick":871,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":509,"tick":871,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":510,"tick":873,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":511,"tick":874,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":512,"tick":876,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":513,"tick":877,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":514,"tick":878,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":515,"tick":879,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":516,"tick":881,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":517,"tick":882,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2EV {"seq":518,"tick":883,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":519,"tick":883,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+20 EV {"seq":520,"tick":885,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":521,"tick":886,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+3EV {"seq":522,"tick":888,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+637EV {"seq":523,"tick":889,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+6EV {"seq":524,"tick":890,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+EV {"seq":525,"tick":891,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+dEV {"seq":526,"tick":892,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+oEV {"seq":527,"tick":893,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":528,"tick":894,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":529,"tick":896,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+rEV {"seq":530,"tick":897,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":531,"tick":898,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":532,"tick":899,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+pEV {"seq":533,"tick":901,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+hEV {"seq":534,"tick":902,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":535,"tick":903,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+aEV {"seq":536,"tick":904,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+nEV {"seq":537,"tick":906,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":538,"tick":907,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":539,"tick":909,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":540,"tick":910,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":541,"tick":910,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":542,"tick":912,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":543,"tick":913,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":544,"tick":914,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":545,"tick":916,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":546,"tick":917,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2 EV {"seq":547,"tick":918,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+21EV {"seq":548,"tick":919,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":549,"tick":920,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":550,"tick":920,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+35816EV {"seq":551,"tick":921,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+EV {"seq":552,"tick":922,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+cEV {"seq":553,"tick":924,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+sEV {"seq":554,"tick":925,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":555,"tick":926,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+cEV {"seq":556,"tick":927,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":557,"tick":929,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+atEV {"seq":558,"tick":931,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":559,"tick":932,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":560,"tick":933,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":561,"tick":934,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":562,"tick":935,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":563,"tick":936,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":564,"tick":937,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+  EV {"seq":565,"tick":939,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":566,"tick":940,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":567,"tick":941,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":568,"tick":943,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":569,"tick":944,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":570,"tick":945,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":571,"tick":946,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":572,"tick":948,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":573,"tick":949,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2 EV {"seq":574,"tick":950,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2EV {"seq":575,"tick":951,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2 EV {"seq":576,"tick":953,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+3EV {"seq":577,"tick":954,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+5EV {"seq":578,"tick":955,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+8EV {"seq":579,"tick":957,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+6EV {"seq":580,"tick":958,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+4
+EV {"seq":581,"tick":959,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+csEV {"seq":582,"tick":961,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+eEV {"seq":583,"tick":961,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+xEV {"seq":584,"tick":962,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+pEV {"seq":585,"tick":962,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":586,"tick":964,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":587,"tick":965,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ort   EV {"seq":588,"tick":966,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":589,"tick":967,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":590,"tick":969,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":591,"tick":970,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":592,"tick":971,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":593,"tick":973,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+2EV {"seq":594,"tick":974,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":595,"tick":975,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+23 4EV {"seq":596,"tick":976,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+1EV {"seq":597,"tick":978,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":598,"tick":979,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+13EV {"seq":599,"tick":981,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":600,"tick":982,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":601,"tick":983,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":602,"tick":984,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":603,"tick":986,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":604,"tick":987,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+6EV {"seq":605,"tick":988,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+
+EV {"seq":606,"tick":989,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+cEV {"seq":607,"tick":991,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+onsole        EV {"seq":608,"tick":992,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":609,"tick":994,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+3EV {"seq":610,"tick":995,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":611,"tick":996,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+24EV {"seq":612,"tick":997,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+ EV {"seq":613,"tick":999,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":614,"tick":1000,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+0
+EV {"seq":615,"tick":1001,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":616,"tick":1002,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":617,"tick":1004,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+$ EV {"seq":618,"tick":1005,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":619,"tick":1006,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":620,"tick":1007,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":621,"tick":1008,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":622,"tick":1010,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":623,"tick":1011,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":624,"tick":1012,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":625,"tick":1013,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":626,"tick":1014,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":627,"tick":1015,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":628,"tick":1016,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":629,"tick":1017,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":630,"tick":1017,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":631,"tick":1019,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":632,"tick":1020,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":633,"tick":1021,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":634,"tick":1023,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":635,"tick":1024,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":636,"tick":1025,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":637,"tick":1026,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":638,"tick":1028,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":639,"tick":1029,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":640,"tick":1030,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":641,"tick":1030,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":642,"tick":1031,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":643,"tick":1032,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":644,"tick":1033,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":645,"tick":1034,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":646,"tick":1035,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":647,"tick":1036,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":648,"tick":1038,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":649,"tick":1039,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":650,"tick":1040,"cpu":1,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":651,"tick":1041,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":652,"tick":1042,"cpu":2,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":653,"tick":1043,"cpu":0,"pid":6,"name":"ls","state":4,"type":"ON_CPU"}
+EV {"seq":654,"tick":1043,"cpu":1,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":655,"tick":1043,"cpu":1,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":656,"tick":1043,"cpu":0,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":657,"tick":1044,"cpu":1,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":658,"tick":1045,"cpu":2,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}
+EV {"seq":659,"tick":1045,"cpu":2,"pid":2,"name":"sh","state":4,"type":"ON_CPU"}

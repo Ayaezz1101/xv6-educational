@@ -1,2 +1,0 @@
-set(__QT_DEPLOY_TARGET_xv6_events_viewer_FILE /home/ruba/xv6-test/build/xv6_events_viewer)
-set(__QT_DEPLOY_TARGET_xv6_events_viewer_TYPE EXECUTABLE)

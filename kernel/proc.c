@@ -398,35 +398,31 @@ void scheduler(void) {
 
   c->proc = 0;
   for (;;) {
-    // The most recent process to run may have had interrupts
-    // turned off; enable them to avoid a deadlock if all
-    // processes are waiting. Then turn them back off
-    // to avoid a possible race between an interrupt
-    // and wfi.
     intr_on();
     intr_off();
 
     int found = 0;
     for (p = proc; p < &proc[NPROC]; p++) {
       acquire(&p->lock);
-      if(p->state == RUNNABLE){
-      p->state = RUNNING;
-      c->proc = p;
+      if (p->state == RUNNABLE) {
+        found = 1;
+        p->state = RUNNING;
+        c->proc = p;
 
-      cslog_run_start(p);          
-      swtch(&c->context, &p->context);
+        cslog_run_start(p);
+        swtch(&c->context, &p->context);
 
-      c->proc = 0;
-    }
-
+        c->proc = 0;
+      }
       release(&p->lock);
     }
+
     if (found == 0) {
-      // nothing to run; stop running on this core until an interrupt.
       asm volatile("wfi");
     }
   }
 }
+
 
 // Switch to scheduler.  Must hold only p->lock
 // and have changed proc->state. Saves and restores

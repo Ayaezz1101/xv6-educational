@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/xv6_events_viewer.dir/link.d"
   "CMakeFiles/xv6_events_viewer_autogen.dir/AutogenUsed.txt"
   "CMakeFiles/xv6_events_viewer_autogen.dir/ParseCache.txt"
   "xv6_events_viewer_autogen"
