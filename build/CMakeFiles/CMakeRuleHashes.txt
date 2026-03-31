@@ -1,4 +1,0 @@
-# Hashes of file build rules.
-54faa8edb9c512f5f6993f50b3a5989b CMakeFiles/xv6_events_viewer_autogen
-54faa8edb9c512f5f6993f50b3a5989b CMakeFiles/xv6_events_viewer_autogen_timestamp_deps
-14534ad925229d3674d0d2b54369926e xv6_events_viewer_autogen/timestamp

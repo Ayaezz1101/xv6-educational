@@ -21,6 +21,7 @@
 #include "riscv.h"
 #include "defs.h"
 #include "fs.h"
+#include "fslog.h"
 #include "buf.h"
 
 struct {
@@ -68,6 +69,7 @@ bget(uint dev, uint blockno)
       b->refcnt++;
       release(&bcache.lock);
       acquiresleep(&b->lock);
+      fslog_push(FS_BGET_HIT, 0, blockno, 0, "BCACHE");
       return b;
     }
   }
@@ -82,6 +84,7 @@ bget(uint dev, uint blockno)
       b->refcnt = 1;
       release(&bcache.lock);
       acquiresleep(&b->lock);
+      fslog_push(FS_BGET_MISS, 0, blockno, 0, "BCACHE");
       return b;
     }
   }
@@ -131,6 +134,7 @@ brelse(struct buf *b)
     b->prev = &bcache.head;
     bcache.head.next->prev = b;
     bcache.head.next = b;
+    fslog_push(FS_BRELEASE, 0, b->blockno, 0, "BCACHE");
   }
   
   release(&bcache.lock);

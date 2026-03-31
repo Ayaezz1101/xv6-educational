@@ -10,6 +10,7 @@ struct stat;
 struct superblock;
 #include "cslog.h"
 
+
 // bio.c
 void            binit(void);
 struct buf*     bread(uint, uint);
@@ -55,6 +56,12 @@ void            stati(struct inode*, struct stat*);
 int             writei(struct inode*, int, uint64, uint, uint);
 void            itrunc(struct inode*);
 void            ireclaim(int);
+
+// fslog.c
+struct fs_event; // 🔥 إضافة هذا السطر هنا (Forward Declaration)
+void            fslog_init(void);
+void            fslog_push(int, int, int, uint, char*);
+int             fslog_read_many(struct fs_event*, int);
 
 // kalloc.c
 void*           kalloc(void);

@@ -58,4 +58,29 @@ ringbuf_read_many(struct ringbuf *rb, void *out, int max)
   release(&rb->lock);
 
   return n;
+<<<<<<< Updated upstream
 }
+=======
+}
+int
+ringbuf_pop(struct ringbuf *rb, void *dst)
+{
+  acquire(&rb->lock);
+  
+  if(rb->count == 0){ // البفر فارغ تماماً
+    release(&rb->lock);
+    return -1;
+  }
+
+  // استخدام الدالة المساعدة slot_ptr الموجودة عندك أصلاً
+  void *src = slot_ptr(rb, rb->tail);
+  memmove(dst, src, rb->elem_size);
+  
+  // تحديث المؤشرات بنفس منطق المشروع
+  rb->tail = (rb->tail + 1) % RB_CAP;
+  rb->count--;
+  
+  release(&rb->lock);
+  return 0;
+} 
+>>>>>>> Stashed changes

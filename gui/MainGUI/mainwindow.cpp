@@ -1,78 +1,59 @@
 #include "mainwindow.h"
-
-#include <QCoreApplication>
-#include <QDesktopServices>
-#include <QDir>
-#include <QGridLayout>
-#include <QLabel>
-#include <QPushButton>
-#include <QUrl>
+#include "schedulerWindow.h" // تأكدي من تضمين الملف الصحيح
 #include <QVBoxLayout>
-#include <QWidget>
+#include <QGridLayout>
+#include <QPushButton>
+#include <QLabel>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), titleLabel(nullptr), btnScheduler(nullptr),
-      btnPageTable(nullptr), btnFileSystem(nullptr), btnSyscall(nullptr) {
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
+    QWidget *central = new QWidget(this);
+    setCentralWidget(central);
+    QVBoxLayout *mainLayout = new QVBoxLayout(central);
 
-  QWidget *central = new QWidget(this);
-  setCentralWidget(central);
+    titleLabel = new QLabel("xv6 Educational Dashboard", this);
+    titleLabel->setAlignment(Qt::AlignCenter);
+    titleLabel->setStyleSheet("font-size: 22pt; font-weight: bold; color: #2c3e50; margin: 25px;");
+    mainLayout->addWidget(titleLabel);
 
-  titleLabel = new QLabel("xv6 Educational GUI", this);
-  titleLabel->setAlignment(Qt::AlignCenter);
-  QFont f = titleLabel->font();
-  f.setPointSize(18);
-  f.setBold(true);
-  titleLabel->setFont(f);
+    QGridLayout *grid = new QGridLayout();
+    
+    btnScheduler = new QPushButton("📊 CPU Scheduling", this);
+    btnPageTable = new QPushButton("🧠 Memory (Page Tables)", this);
+    btnFileSystem = new QPushButton("📁 File System Explorer", this);
+    btnSyscall   = new QPushButton("📞 System Calls Lab", this);
 
-  btnScheduler = new QPushButton("Scheduling", this);
-  btnPageTable = new QPushButton("Page Tables", this);
-  btnFileSystem = new QPushButton("File System", this);
-  btnSyscall = new QPushButton("Syscalls", this);
+    // ستايل احترافي موحد
+    QString btnStyle = "QPushButton { background-color: #3498db; color: white; border-radius: 15px; min-height: 100px; font-size: 18px; font-weight: bold; border: 2px solid #2980b9; } "
+                       "QPushButton:hover { background-color: #2ecc71; border: 2px solid #27ae60; }";
+    
+    btnScheduler->setStyleSheet(btnStyle);
+    btnPageTable->setStyleSheet(btnStyle);
+    btnFileSystem->setStyleSheet(btnStyle);
+    btnSyscall->setStyleSheet(btnStyle);
 
-  connect(btnScheduler, &QPushButton::clicked, this,
-          &MainWindow::onSchedulerClicked);
-  connect(btnPageTable, &QPushButton::clicked, this,
-          &MainWindow::onPageTableClicked);
-  connect(btnFileSystem, &QPushButton::clicked, this,
-          &MainWindow::onFileSystemClicked);
-  connect(btnSyscall, &QPushButton::clicked, this,
-          &MainWindow::onSyscallClicked);
+    grid->addWidget(btnScheduler, 0, 0);
+    grid->addWidget(btnPageTable, 0, 1);
+    grid->addWidget(btnFileSystem, 1, 0);
+    grid->addWidget(btnSyscall, 1, 1);
 
-  QGridLayout *grid = new QGridLayout;
-  grid->addWidget(btnScheduler, 0, 0);
-  grid->addWidget(btnPageTable, 0, 1);
-  grid->addWidget(btnFileSystem, 1, 0);
-  grid->addWidget(btnSyscall, 1, 1);
+    mainLayout->addLayout(grid);
+    mainLayout->addStretch();
 
-  QVBoxLayout *mainLayout = new QVBoxLayout;
-  mainLayout->addWidget(titleLabel);
-  mainLayout->addSpacing(20);
-  mainLayout->addLayout(grid);
-  mainLayout->addStretch();
-
-  central->setLayout(mainLayout);
-
-  setWindowTitle("xv6 Educational Main GUI");
-  resize(500, 300);
+    connect(btnScheduler, &QPushButton::clicked, this, &MainWindow::onSchedulerClicked);
+    
+    setWindowTitle("xv6 OS Educational GUI v2.0");
+    resize(700, 550);
 }
+
+void MainWindow::onSchedulerClicked() {
+    SchedulerWindow *schedWin = new SchedulerWindow();
+    schedWin->setAttribute(Qt::WA_DeleteOnClose);
+    schedWin->show();
+}
+
+// باقي الدوال تبقى فارغة حالياً
+void MainWindow::onPageTableClicked() {}
+void MainWindow::onFileSystemClicked() {}
+void MainWindow::onSyscallClicked() {}
 
 MainWindow::~MainWindow() {}
-
-void MainWindow::openModuleFolder(const QString &relativePath) {
-  QString baseDir = QCoreApplication::applicationDirPath();
-  QDir dir(baseDir);
-
-  dir.cdUp();
-
-  QString targetPath = dir.absoluteFilePath(relativePath);
-
-  QDesktopServices::openUrl(QUrl::fromLocalFile(targetPath));
-}
-
-void MainWindow::onSchedulerClicked() { openModuleFolder("SchedulerUI"); }
-
-void MainWindow::onPageTableClicked() { openModuleFolder("PageTableUI"); }
-
-void MainWindow::onFileSystemClicked() { openModuleFolder("FileSystemUI"); }
-
-void MainWindow::onSyscallClicked() { openModuleFolder("SyscallUI"); }

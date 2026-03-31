@@ -16,4 +16,9 @@ struct ringbuf {
 
 void ringbuf_init(struct ringbuf *rb, char *name, uint elem_size);
 int  ringbuf_push(struct ringbuf *rb, void *elem);
+<<<<<<< Updated upstream
 int  ringbuf_read_many(struct ringbuf *rb, void *out, int max);
+=======
+int  ringbuf_pop(struct ringbuf *rb, void *dst);
+int  ringbuf_read_many(struct ringbuf *rb, void *out, int max);
+>>>>>>> Stashed changes

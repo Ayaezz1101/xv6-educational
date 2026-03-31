@@ -503,3 +503,16 @@ sys_pipe(void)
   }
   return 0;
 }
+uint64
+sys_fsread(void)
+{
+  uint64 addr;
+  int n;
+
+  // استدعاء الدوال بدون مقارنتها بـ < 0 لأنها تعيد void
+  argaddr(0, &addr); 
+  argint(1, &n);
+
+  // استدعاء الوظيفة الحقيقية وإعادة نتيجتها
+  return fslog_read_many((struct fs_event *)addr, n);
+}

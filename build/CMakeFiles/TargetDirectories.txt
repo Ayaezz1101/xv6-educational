@@ -1,5 +1,0 @@
-/mnt/c/Users/ASUS/rubaa/build/CMakeFiles/xv6_events_viewer.dir
-/mnt/c/Users/ASUS/rubaa/build/CMakeFiles/edit_cache.dir
-/mnt/c/Users/ASUS/rubaa/build/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/ASUS/rubaa/build/CMakeFiles/xv6_events_viewer_autogen_timestamp_deps.dir
-/mnt/c/Users/ASUS/rubaa/build/CMakeFiles/xv6_events_viewer_autogen.dir

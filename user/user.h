@@ -1,3 +1,4 @@
+#include "kernel/fslog.h"
 #define SBRK_ERROR ((char *)-1)
 
 struct stat;
@@ -52,4 +53,4 @@ void free(void*);
 
 #include "kernel/csevent.h"
 int csread(struct cs_event *out, int max);
-
+int fsread(struct fs_event*, int);
