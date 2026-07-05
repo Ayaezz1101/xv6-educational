@@ -19,32 +19,6 @@ etype(int t)
 }
 
 static char*
-permstr(int perm)
-{
-  static char buf[8];
-  int i = 0;
-  
-  if(perm & (1 << 1)) buf[i++] = 'R';
-  if(perm & (1 << 2)) buf[i++] = 'W';
-  if(perm & (1 << 3)) buf[i++] = 'X';
-  if(perm & (1 << 4)) buf[i++] = 'U';
-  buf[i] = '\0';
-  
-  return buf;
-}
-
-static char*
-kindstr(int kind)
-{
-  switch(kind){
-    case PAGE_USER:      return "USER";
-    case PAGE_PAGETABLE: return "PAGETABLE";
-    case PAGE_KERNEL:    return "KERNEL";
-    default:             return "UNKNOWN";
-  }
-}
-
-static char*
 esrc(int s)
 {
   switch(s){
@@ -74,7 +48,7 @@ main(void)
     for(i = 0; i < n; i++){
      
     
-      printf("#%d seq=%d tick=%d cpu=%d pid=%d type=%s src=%s va=%p pa=%p perm=%s kind=%s name=%s old=%p new=%p\n",
+      printf("#%d seq=%d tick=%d cpu=%d pid=%d type=%s src=%s name=%s old=%p new=%p pa=0x%lx va=0x%lx\n",
         i,
         (int)ev[i].seq,
         ev[i].ticks,
@@ -82,13 +56,11 @@ main(void)
         ev[i].pid,
         etype(ev[i].type),
         esrc(ev[i].source),
-        (void*)ev[i].va,
-        (void*)ev[i].pa,
-        permstr(ev[i].perm),
-        kindstr(ev[i].kind),
         ev[i].name,
         (void*)ev[i].oldsz,
-        (void*)ev[i].newsz);
+        (void*)ev[i].newsz,
+        ev[i].pa,
+        ev[i].va);
     }
   }
 

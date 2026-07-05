@@ -1,3 +1,4 @@
+<<<<<<<<< LOCAL VERSION
 
 user/_dorphan:     file format elf64-littleriscv
 
@@ -1537,3 +1538,6 @@ malloc(uint nbytes)
  8fc:	6aa2                	ld	s5,8(sp)
  8fe:	6b02                	ld	s6,0(sp)
  900:	b7f5                	j	8ec <malloc+0xe2>
+
+======== THEIR VERSION
+>>>>>>>> END

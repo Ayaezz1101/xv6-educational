@@ -165,7 +165,7 @@ clean:
 	*/*.o */*.d */*.asm */*.sym \
 	$K/kernel fs.img \
 	mkfs/mkfs .gdbinit \
-        $U/usys.S \
+	    $U/usys.S \
 	$(UPROGS)
 
 # try to generate a unique GDB port

@@ -7,6 +7,7 @@
 #include "spinlock.h"
 #include "proc.h"
 #include "fs.h"
+#include "memevent.h"
 
 /*
  * the kernel's page table.
@@ -213,6 +214,8 @@ uvmunmap(pagetable_t pagetable, uint64 va, uint64 npages, int do_free)
 
 // Allocate PTEs and physical memory to grow a process from oldsz to
 // newsz, which need not be page aligned.  Returns new size or 0 on error.
+// Allocate PTEs and physical memory to grow a process from oldsz to
+// newsz, which need not be page aligned.  Returns new size or 0 on error.
 uint64
 uvmalloc(pagetable_t pagetable, uint64 oldsz, uint64 newsz, int xperm)
 {
@@ -230,11 +233,27 @@ uvmalloc(pagetable_t pagetable, uint64 oldsz, uint64 newsz, int xperm)
       return 0;
     }
     memset(mem, 0, PGSIZE);
+    
+    // محاولة ربط الصفحة بالجدول
     if(mappages(pagetable, a, PGSIZE, (uint64)mem, PTE_R|PTE_U|xperm) != 0){
       kfree(mem);
       uvmdealloc(pagetable, a, oldsz);
       return 0;
     }
+
+    // --- إضافة تسجيل الحدث هنا ---
+    struct mem_event e;
+    e.type = MEM_GROW;            // نوع الحدث
+    e.pid = myproc()->pid;        // معرف العملية
+    e.ticks = ticks;              // الوقت الحالي
+    e.cpu = cpuid();              // رقم المعالج
+    e.va = a;                     // العنوان الافتراضي المخصص
+    e.pa = (uint64)mem;           // العنوان الفيزيائي
+    e.perm = PTE_R|PTE_U|xperm;   // الصلاحيات
+    e.kind = PAGE_USER;           // نوع الصفحة
+    e.source = SRC_UVMALLOC;      // المصدر
+    memlog_push(&e);              // إرسال الحدث إلى الـ Ring Buffer
+    // ----------------------------
   }
   return newsz;
 }

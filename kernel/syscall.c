@@ -132,6 +132,7 @@ static uint64 (*syscalls[])(void) = {
 [SYS_csread]   sys_csread,
 [SYS_fsread]   sys_fsread,
 
+[SYS_memread]   sys_memread,
 
 };
 

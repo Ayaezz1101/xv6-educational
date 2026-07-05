@@ -10,3 +10,8 @@ __pycache__/
 .vscode/*.db
 *.log
 build/
+fs.img
+*.o
+*.sym
+*.asm
+kernel/kernel

@@ -1,0 +1,3 @@
+user/logstress.o: user/logstress.c kernel/types.h kernel/stat.h \
+ kernel/fcntl.h user/user.h kernel/csevent.h kernel/types.h \
+ kernel/fslog.h

@@ -1,3 +1,4 @@
+<<<<<<<<< LOCAL VERSION
 
 user/_stressfs:     file format elf64-littleriscv
 
@@ -1572,3 +1573,6 @@ malloc(uint nbytes)
  94a:	6aa2                	ld	s5,8(sp)
  94c:	6b02                	ld	s6,0(sp)
  94e:	b7f5                	j	93a <malloc+0xe2>
+
+======== THEIR VERSION
+>>>>>>>> END

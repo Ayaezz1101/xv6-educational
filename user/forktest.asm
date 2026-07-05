@@ -1,3 +1,4 @@
+<<<<<<<<< LOCAL VERSION
 
 user/_forktest:     file format elf64-littleriscv
 
@@ -835,3 +836,6 @@ fsread:
  414:	00000073          	ecall
  ret
  418:	8082                	ret
+
+======== THEIR VERSION
+>>>>>>>> END

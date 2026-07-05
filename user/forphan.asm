@@ -1,3 +1,4 @@
+<<<<<<<<< LOCAL VERSION
 
 user/_forphan:     file format elf64-littleriscv
 
@@ -1562,3 +1563,6 @@ malloc(uint nbytes)
  936:	6aa2                	ld	s5,8(sp)
  938:	6b02                	ld	s6,0(sp)
  93a:	b7f5                	j	926 <malloc+0xe2>
+
+======== THEIR VERSION
+>>>>>>>> END

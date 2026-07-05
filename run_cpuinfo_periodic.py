@@ -12,8 +12,8 @@ import sys
 from pathlib import Path
 from datetime import datetime
 
-LOG_PATH = "qemu.log"
-DB_PATH = "events.db"
+LOG_PATH = r"C:\Users\rubaa\Desktop\xv6-educational-main\qemu.log"
+DB_PATH = r"C:\Users\rubaa\Desktop\xv6-educational-main\events.db"
 SESSION_ID = str(uuid.uuid4())
 
 def clean_payload(payload: str) -> str:

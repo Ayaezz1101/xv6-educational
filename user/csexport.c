@@ -4,6 +4,9 @@
 // نحن نحتاج فقط لهيكل أحداث المعالج هنا
 static struct cs_event cs_ev[8];
 
+#define OUTBUF_SZ 512
+
+// دالة طباعة أحداث المعالج (القديمة)
 static void print_cs_event(const struct cs_event *e) {
     // نستخدم printf العادية هنا لأن أحداث المعالج ليست بكثافة أحداث الـ FS
     printf("EV {\"seq\":%ld,\"tick\":%d,\"cpu\":%d,\"pid\":%d,\"name\":\"%s\",\"state\":%d,\"type\":\"ON_CPU\"}\n",

@@ -1,3 +1,4 @@
+<<<<<<<<< LOCAL VERSION
 
 user/_wc:     file format elf64-littleriscv
 
@@ -1660,3 +1661,6 @@ malloc(uint nbytes)
  9ce:	6aa2                	ld	s5,8(sp)
  9d0:	6b02                	ld	s6,0(sp)
  9d2:	b7f5                	j	9be <malloc+0xe2>
+
+======== THEIR VERSION
+>>>>>>>> END

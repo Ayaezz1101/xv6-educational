@@ -1,3 +1,4 @@
+<<<<<<<<< LOCAL VERSION
 
 user/_zombie:     file format elf64-littleriscv
 
@@ -1489,3 +1490,6 @@ malloc(uint nbytes)
  890:	6aa2                	ld	s5,8(sp)
  892:	6b02                	ld	s6,0(sp)
  894:	b7f5                	j	880 <malloc+0xe2>
+
+======== THEIR VERSION
+>>>>>>>> END

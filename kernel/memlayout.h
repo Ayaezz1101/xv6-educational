@@ -39,6 +39,12 @@
 #define KERNBASE 0x80000000L
 #define PHYSTOP (KERNBASE + 128*1024*1024)
 
+// Helper macros to convert between kernel virtual addresses (KVA) and
+// physical addresses (PA) for the kernel's direct mapping at KERNBASE.
+// Use uint64 casts to avoid truncation on RV64.
+#define V2P(x) ((uint64)(x) - KERNBASE)
+#define P2V(x) ((void *)((uint64)(x) + KERNBASE))
+
 // map the trampoline page to the highest address,
 // in both user and kernel space.
 #define TRAMPOLINE (MAXVA - PGSIZE)

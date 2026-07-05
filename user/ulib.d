@@ -1,3 +1,7 @@
+<<<<<<<<< LOCAL VERSION
 user/ulib.o: user/ulib.c kernel/types.h kernel/stat.h kernel/fcntl.h \
  kernel/riscv.h kernel/vm.h user/user.h kernel/csevent.h kernel/types.h \
  kernel/fslog.h
+
+======== THEIR VERSION
+>>>>>>>> END

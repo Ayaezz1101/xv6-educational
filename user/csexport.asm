@@ -1,3 +1,4 @@
+<<<<<<<<< LOCAL VERSION
 
 user/_csexport:     file format elf64-littleriscv
 
@@ -1538,3 +1539,6 @@ malloc(uint nbytes)
  8f8:	6aa2                	ld	s5,8(sp)
  8fa:	6b02                	ld	s6,0(sp)
  8fc:	b7f5                	j	8e8 <malloc+0xe2>
+
+======== THEIR VERSION
+>>>>>>>> END

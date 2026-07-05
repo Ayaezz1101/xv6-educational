@@ -1,3 +1,4 @@
+<<<<<<<<< LOCAL VERSION
 
 user/_grep:     file format elf64-littleriscv
 
@@ -1772,3 +1773,6 @@ malloc(uint nbytes)
  acc:	6aa2                	ld	s5,8(sp)
  ace:	6b02                	ld	s6,0(sp)
  ad0:	b7f5                	j	abc <malloc+0xe2>
+
+======== THEIR VERSION
+>>>>>>>> END

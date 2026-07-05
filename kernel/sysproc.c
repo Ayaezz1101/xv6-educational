@@ -6,6 +6,7 @@
 #include "spinlock.h"
 #include "proc.h"
 #include "vm.h"
+#include "schedlog.h"
 
 uint64
 sys_exit(void)
@@ -106,4 +107,30 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+uint64
+sys_schedread(void)
+{
+  uint64 dst;
+  int max;
+
+  argaddr(0, &dst);
+  argint(1, &max);
+
+  if(max <= 0)
+    return 0;
+
+  struct sched_event buf[32];
+  if(max > 32)
+    max = 32;
+
+  int n = schedread(buf, max);
+  if(n < 0)
+    return -1;
+
+  if(copyout(myproc()->pagetable, dst, (char *)buf, n * sizeof(struct sched_event)) < 0)
+    return -1;
+
+  return n;
 }

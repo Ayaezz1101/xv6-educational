@@ -1,3 +1,4 @@
+<<<<<<<<< LOCAL VERSION
 
 kernel/kernel:     file format elf64-littleriscv
 
@@ -15617,3 +15618,6 @@ state_dup_file(int pid, int oldfd, int newfd, struct file *f)
     8000811a:	7928                	ld	a0,112(a0)
     8000811c:	10200073          	sret
 	...
+
+======== THEIR VERSION
+>>>>>>>> END

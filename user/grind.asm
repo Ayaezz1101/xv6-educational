@@ -1,3 +1,4 @@
+<<<<<<<<< LOCAL VERSION
 
 user/_grind:     file format elf64-littleriscv
 
@@ -2552,3 +2553,6 @@ malloc(uint nbytes)
     1150:	6aa2                	ld	s5,8(sp)
     1152:	6b02                	ld	s6,0(sp)
     1154:	b7f5                	j	1140 <malloc+0xe2>
+
+======== THEIR VERSION
+>>>>>>>> END

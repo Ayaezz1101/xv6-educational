@@ -7,7 +7,9 @@
 #include "defs.h"
 #include "vm.h"
 #include "cslog.h"
-
+#include "schedlog.h"
+#include "memevent.h"
+#include "memlog.h"
 
 struct cpu cpus[NCPU];
 
@@ -17,6 +19,10 @@ struct proc *initproc;
 
 int nextpid = 1;
 struct spinlock pid_lock;
+
+static volatile int sched_info_logged = 0;
+
+struct spinlock schedinfo_lock;
 
 extern void forkret(void);
 static void freeproc(struct proc *p);
@@ -50,6 +56,7 @@ void procinit(void) {
 
   initlock(&pid_lock, "nextpid");
   initlock(&wait_lock, "wait_lock");
+  initlock(&schedinfo_lock, "schedinfo");
   for (p = proc; p < &proc[NPROC]; p++) {
     initlock(&p->lock, "proc");
     p->state = UNUSED;
@@ -227,8 +234,22 @@ int growproc(int n) {
       return -1;
     }
   } else if (n < 0) {
-    sz = uvmdealloc(p->pagetable, sz, sz + n);
-  }
+  struct mem_event e;
+  memset(&e, 0, sizeof(e));
+  e.ticks  = ticks;
+  e.cpu    = cpuid();
+  e.type   = MEM_SHRINK;
+  e.pid    = p->pid;
+  e.state  = p->state;
+  e.oldsz  = sz;
+  e.newsz  = sz + n;
+  e.source = SRC_UVMDEALLOC;
+  e.kind   = PAGE_USER;
+  safestrcpy(e.name, p->name, MEM_NM);
+  memlog_push(&e);
+
+  sz = uvmdealloc(p->pagetable, sz, sz + n);
+}
   p->sz = sz;
   return 0;
 }
@@ -396,6 +417,23 @@ void scheduler(void) {
   struct proc *p;
   struct cpu *c = mycpu();
 
+    if(cpuid() == 0){
+      acquire(&schedinfo_lock);
+      if(sched_info_logged == 0){
+        sched_info_logged = 1;
+
+        struct sched_event e;
+        memset(&e, 0, sizeof(e));
+        e.ticks = ticks;
+        e.event_type = SCHED_EV_INFO;
+        safestrcpy(e.scheduler_name, "RR", sizeof(e.scheduler_name));
+        e.num_cpus = 3;
+        e.time_slice = 1;
+        schedlog_emit(&e);
+      }
+      release(&schedinfo_lock);
+    }
+
   c->proc = 0;
   for (;;) {
     intr_on();
@@ -410,8 +448,53 @@ void scheduler(void) {
         c->proc = p;
 
         cslog_run_start(p);
+        if (cpuid() == 0 && sched_info_logged == 0) {
+          sched_info_logged = 1;
+
+          struct sched_event e;
+          memset(&e, 0, sizeof(e));
+          e.ticks = ticks;
+          e.event_type = SCHED_EV_INFO;
+          safestrcpy(e.scheduler_name, "RR", sizeof(e.scheduler_name));
+          e.num_cpus = NCPU;
+          e.time_slice = 1;
+          schedlog_emit(&e);
+        }
+
+        if(strncmp(p->name, "schedexport", 16) != 0){
+          struct sched_event e;
+          memset(&e, 0, sizeof(e));
+          e.ticks = ticks;
+          e.event_type = SCHED_EV_ON_CPU;
+          e.cpu = cpuid();
+          e.pid = p->pid;
+          safestrcpy(e.name, p->name, sizeof(e.name));
+          e.state = p->state;
+          schedlog_emit(&e);
+        }
         swtch(&c->context, &p->context);
 
+        if(strncmp(p->name, "schedexport", 16) != 0){
+          struct sched_event e2;
+          memset(&e2, 0, sizeof(e2));
+          e2.ticks = ticks;
+          e2.event_type = SCHED_EV_OFF_CPU;
+          e2.cpu = cpuid();
+          e2.pid = p->pid;
+          safestrcpy(e2.name, p->name, sizeof(e2.name));
+          e2.state = p->state;
+
+          if(p->state == SLEEPING)
+            e2.reason = SCHED_OFF_SLEEP;
+          else if(p->state == ZOMBIE)
+            e2.reason = SCHED_OFF_EXIT;
+          else if(p->state == RUNNABLE)
+            e2.reason = SCHED_OFF_YIELD;
+          else
+            e2.reason = SCHED_OFF_UNKNOWN;
+
+          schedlog_emit(&e2);
+        }
         c->proc = 0;
       }
       release(&p->lock);
@@ -422,7 +505,6 @@ void scheduler(void) {
     }
   }
 }
-
 
 // Switch to scheduler.  Must hold only p->lock
 // and have changed proc->state. Saves and restores

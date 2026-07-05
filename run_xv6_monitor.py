@@ -4,7 +4,7 @@ import sys
 import pexpect
 
 def main():
-    project_dir = "/mnt/c/Users/rubaa/OneDrive/Desktop/xv6-educational-main"
+    project_dir = "/mnt/c/Users/rubaa/Desktop/xv6-educational-main"
     log_file_path = os.path.join(project_dir, "qemu.log")
     
     try:

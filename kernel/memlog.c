@@ -23,6 +23,7 @@ memlog_init(void)
   mem_tail = 0;
   mem_count = 0;
   mem_seq = 0;
+  printf("MEM memlog initialized, buffer capacity: %d events\n", MEM_RB_CAP);
 }
 
 void

@@ -1,18 +1,25 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'schedulerWindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.4.2)
+** Created by: The Qt Meta Object Compiler version 69 (Qt 6.10.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include <memory>
 #include "../../../schedulerUi/schedulerWindow.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
+
+#include <QtCore/qtmochelpers.h>
+
+#include <memory>
+
+
+#include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'schedulerWindow.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.4.2. It"
+#elif Q_MOC_OUTPUT_REVISION != 69
+#error "This file was generated using the moc from 6.10.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -21,79 +28,95 @@
 #define Q_CONSTINIT
 #endif
 
-QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
+QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
-struct qt_meta_stringdata_SchedulerWindow_t {
-    uint offsetsAndSizes[6];
-    char stringdata0[16];
-    char stringdata1[12];
-    char stringdata2[1];
-};
-#define QT_MOC_LITERAL(ofs, len) \
-    uint(sizeof(qt_meta_stringdata_SchedulerWindow_t::offsetsAndSizes) + ofs), len 
-Q_CONSTINIT static const qt_meta_stringdata_SchedulerWindow_t qt_meta_stringdata_SchedulerWindow = {
-    {
-        QT_MOC_LITERAL(0, 15),  // "SchedulerWindow"
-        QT_MOC_LITERAL(16, 11),  // "updateTable"
-        QT_MOC_LITERAL(28, 0)   // ""
-    },
-    "SchedulerWindow",
-    "updateTable",
-    ""
-};
-#undef QT_MOC_LITERAL
+struct qt_meta_tag_ZN15SchedulerWindowE_t {};
 } // unnamed namespace
 
-Q_CONSTINIT static const uint qt_meta_data_SchedulerWindow[] = {
+template <> constexpr inline auto SchedulerWindow::qt_create_metaobjectdata<qt_meta_tag_ZN15SchedulerWindowE_t>()
+{
+    namespace QMC = QtMocConstants;
+    QtMocHelpers::StringRefStorage qt_stringData {
+        "SchedulerWindow",
+        "refreshAll",
+        "",
+        "loadTimeline",
+        "updateLiveEvents",
+        "explainSelectedTimelineRow",
+        "startLiveCapture",
+        "stopLiveCapture",
+        "rebuildIntervals",
+        "onIngestorStarted",
+        "onIngestorFinished",
+        "exitCode",
+        "QProcess::ExitStatus",
+        "exitStatus",
+        "onBuilderFinished"
+    };
 
- // content:
-      10,       // revision
-       0,       // classname
-       0,    0, // classinfo
-       1,   14, // methods
-       0,    0, // properties
-       0,    0, // enums/sets
-       0,    0, // constructors
-       0,       // flags
-       0,       // signalCount
-
- // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   20,    2, 0x08,    1 /* Private */,
-
- // slots: parameters
-    QMetaType::Void,
-
-       0        // eod
-};
-
+    QtMocHelpers::UintData qt_methods {
+        // Slot 'refreshAll'
+        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'loadTimeline'
+        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'updateLiveEvents'
+        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'explainSelectedTimelineRow'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'startLiveCapture'
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'stopLiveCapture'
+        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'rebuildIntervals'
+        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIngestorStarted'
+        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIngestorFinished'
+        QtMocHelpers::SlotData<void(int, QProcess::ExitStatus)>(10, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 11 }, { 0x80000000 | 12, 13 },
+        }}),
+        // Slot 'onBuilderFinished'
+        QtMocHelpers::SlotData<void(int, QProcess::ExitStatus)>(14, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 11 }, { 0x80000000 | 12, 13 },
+        }}),
+    };
+    QtMocHelpers::UintData qt_properties {
+    };
+    QtMocHelpers::UintData qt_enums {
+    };
+    return QtMocHelpers::metaObjectData<SchedulerWindow, qt_meta_tag_ZN15SchedulerWindowE_t>(QMC::MetaObjectFlag{}, qt_stringData,
+            qt_methods, qt_properties, qt_enums);
+}
 Q_CONSTINIT const QMetaObject SchedulerWindow::staticMetaObject = { {
     QMetaObject::SuperData::link<QMainWindow::staticMetaObject>(),
-    qt_meta_stringdata_SchedulerWindow.offsetsAndSizes,
-    qt_meta_data_SchedulerWindow,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN15SchedulerWindowE_t>.stringdata,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN15SchedulerWindowE_t>.data,
     qt_static_metacall,
     nullptr,
-    qt_incomplete_metaTypeArray<qt_meta_stringdata_SchedulerWindow_t,
-        // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<SchedulerWindow, std::true_type>,
-        // method 'updateTable'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
-    >,
+    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN15SchedulerWindowE_t>.metaTypes,
     nullptr
 } };
 
 void SchedulerWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
+    auto *_t = static_cast<SchedulerWindow *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<SchedulerWindow *>(_o);
-        (void)_t;
         switch (_id) {
-        case 0: _t->updateTable(); break;
+        case 0: _t->refreshAll(); break;
+        case 1: _t->loadTimeline(); break;
+        case 2: _t->updateLiveEvents(); break;
+        case 3: _t->explainSelectedTimelineRow(); break;
+        case 4: _t->startLiveCapture(); break;
+        case 5: _t->stopLiveCapture(); break;
+        case 6: _t->rebuildIntervals(); break;
+        case 7: _t->onIngestorStarted(); break;
+        case 8: _t->onIngestorFinished((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QProcess::ExitStatus>>(_a[2]))); break;
+        case 9: _t->onBuilderFinished((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QProcess::ExitStatus>>(_a[2]))); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *SchedulerWindow::metaObject() const
@@ -104,7 +127,7 @@ const QMetaObject *SchedulerWindow::metaObject() const
 void *SchedulerWindow::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_SchedulerWindow.stringdata0))
+    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN15SchedulerWindowE_t>.strings))
         return static_cast<void*>(this);
     return QMainWindow::qt_metacast(_clname);
 }
@@ -115,15 +138,15 @@ int SchedulerWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
-    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        _id -= 10;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 10)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        _id -= 10;
     }
     return _id;
 }
 QT_WARNING_POP
-QT_END_MOC_NAMESPACE

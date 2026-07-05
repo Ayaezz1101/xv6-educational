@@ -1,3 +1,4 @@
+<<<<<<<<< LOCAL VERSION
 
 user/_cscat:     file format elf64-littleriscv
 
@@ -1517,3 +1518,6 @@ malloc(uint nbytes)
  8ea:	6aa2                	ld	s5,8(sp)
  8ec:	6b02                	ld	s6,0(sp)
  8ee:	b7f5                	j	8da <malloc+0xe2>
+
+======== THEIR VERSION
+>>>>>>>> END

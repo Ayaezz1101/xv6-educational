@@ -917,11 +917,20 @@
  mdp:/usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h
 /home/aya/xv6_ruba/gui/MainGUI/schedulerUi/schedulerWindow.h
  mmc:Q_OBJECT
- mdp:/home/aya/xv6_ruba/gui/MainGUI/build/MainGUI_autogen/moc_predefs.h
- mdp:/home/aya/xv6_ruba/gui/MainGUI/schedulerUi/schedulerWindow.h
+ mdp:/home/ruba/xv6-test/gui/MainGUI/build/MainGUI_autogen/moc_predefs.h
+ mdp:/home/ruba/xv6-test/gui/MainGUI/filesystemUi/bufferCacheWidget.h
  mdp:/usr/include/alloca.h
+ mdp:/usr/include/asm-generic/bitsperlong.h
  mdp:/usr/include/asm-generic/errno-base.h
  mdp:/usr/include/asm-generic/errno.h
+ mdp:/usr/include/asm-generic/int-ll64.h
+ mdp:/usr/include/asm-generic/posix_types.h
+ mdp:/usr/include/asm-generic/types.h
+ mdp:/usr/include/asm/bitsperlong.h
+ mdp:/usr/include/asm/errno.h
+ mdp:/usr/include/asm/posix_types.h
+ mdp:/usr/include/asm/posix_types_64.h
+ mdp:/usr/include/asm/types.h
  mdp:/usr/include/assert.h
  mdp:/usr/include/c++/13/algorithm
  mdp:/usr/include/c++/13/array

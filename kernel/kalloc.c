@@ -8,7 +8,9 @@
 #include "spinlock.h"
 #include "riscv.h"
 #include "defs.h"
-
+#include "proc.h"
+#include "memevent.h"
+#include "memlog.h"
 void freerange(void *pa_start, void *pa_end);
 
 extern char end[]; // first address after kernel.
@@ -60,8 +62,26 @@ kfree(void *pa)
   r->next = kmem.freelist;
   kmem.freelist = r;
   release(&kmem.lock);
-}
 
+  struct mem_event e;
+  memset(&e, 0, sizeof(e));
+
+  e.ticks  = ticks;
+  e.cpu    = cpuid();
+  e.type   = MEM_FREE;
+  e.pa     = V2P(pa);
+  e.source = SRC_KFREE;
+  e.kind   = PAGE_UNKNOWN;
+
+  struct proc *p = myproc();
+  if(p){
+    e.pid = p->pid;
+    e.state = p->state;
+    safestrcpy(e.name, p->name, MEM_NM);
+  }
+
+  memlog_push(&e);
+}
 // Allocate one 4096-byte page of physical memory.
 // Returns a pointer that the kernel can use.
 // Returns 0 if the memory cannot be allocated.
@@ -78,5 +98,27 @@ kalloc(void)
 
   if(r)
     memset((char*)r, 5, PGSIZE); // fill with junk
+
+  if(r){
+    struct mem_event e;
+    memset(&e, 0, sizeof(e));
+
+    e.ticks  = ticks;
+    e.cpu    = cpuid();
+    e.type   = MEM_ALLOC;
+    e.pa     = V2P(r);
+    e.source = SRC_KALLOC;
+    e.kind   = PAGE_UNKNOWN;
+
+    struct proc *p = myproc();
+    if(p){
+      e.pid = p->pid;
+      e.state = p->state;
+      safestrcpy(e.name, p->name, MEM_NM);
+    }
+
+    memlog_push(&e);
+  }
+
   return (void*)r;
 }

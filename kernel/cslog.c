@@ -44,7 +44,22 @@ cslog_read_many(struct cs_event *out, int max)
 void
 cslog_run_start(struct proc *p)
 {
-  if(p == 0) return;
+  // سجل كل context switch، حتى idle
+  if(p == 0) {
+    // idle process
+    struct cs_event e;
+    memset(&e, 0, sizeof(e));
+    e.ticks = ticks;
+    e.cpu = cpuid();
+    e.pid = 0;
+    e.state = 0;
+    safestrcpy(e.name, "idle", CS_NM);
+    e.type = CS_RUN_START;
+    cslog_push(&e);
+    return;
+  }
+  
+  // تخطي بعض processes
   if(p->pid <= 0) return;
   if(p->name[0] == 0) return;
   if(strncmp(p->name, "cscat", 5) == 0) return;
