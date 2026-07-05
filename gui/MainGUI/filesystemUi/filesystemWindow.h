@@ -8,6 +8,10 @@
 #include <QTextEdit>
 #include <QVBoxLayout>
 
+// Forward declaration
+class CoreEngineWindow;
+class PathResolutionWindow;
+
 class FileSystemWindow : public QMainWindow {
     Q_OBJECT
 
@@ -28,6 +32,8 @@ private:
     QGraphicsScene *layersScene;
 
     QTextEdit *explanationArea;
+    CoreEngineWindow *coreEngineWindow;
+    PathResolutionWindow *pathResolutionWindow;
 };
 
 #endif

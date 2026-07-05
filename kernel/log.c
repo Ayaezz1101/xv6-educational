@@ -46,10 +46,6 @@ log_get_state(void)
   s.committing = log.committing;
   return s;
 }
-
-//
-// 🔥 report (نفس نمط bio.c)
-//
 void log_report(char *op, int bno, struct log_state old, char *desc)
 {
   struct fs_event e;

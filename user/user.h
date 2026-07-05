@@ -1,8 +1,5 @@
 #include "kernel/csevent.h"
 #include "kernel/fslog.h"
-#include "kernel/schedlog.h"
-#include "kernel/memevent.h"
-#include "kernel/procinfo.h"
 #define SBRK_ERROR ((char *)-1)
 
 struct stat;
@@ -57,7 +54,3 @@ void free(void*);
 
 int csread(struct cs_event *out, int max);
 int fsread(struct fs_event *out, int max);
-int schedread(struct sched_event *out, int max);
-int memread(struct mem_event *out, int max);
-int getcpuinfo(struct cpu_info *cpus, int ncpu);
-int getprocstats(struct proc_stats *stats);

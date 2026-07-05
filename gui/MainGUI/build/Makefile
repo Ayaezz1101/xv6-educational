@@ -203,6 +203,30 @@ filesystemUi/CoreEngineWindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainGUI.dir/build.make CMakeFiles/MainGUI.dir/filesystemUi/CoreEngineWindow.cpp.s
 .PHONY : filesystemUi/CoreEngineWindow.cpp.s
 
+filesystemUi/PathResolutionWindow.o: filesystemUi/PathResolutionWindow.cpp.o
+.PHONY : filesystemUi/PathResolutionWindow.o
+
+# target to build an object file
+filesystemUi/PathResolutionWindow.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainGUI.dir/build.make CMakeFiles/MainGUI.dir/filesystemUi/PathResolutionWindow.cpp.o
+.PHONY : filesystemUi/PathResolutionWindow.cpp.o
+
+filesystemUi/PathResolutionWindow.i: filesystemUi/PathResolutionWindow.cpp.i
+.PHONY : filesystemUi/PathResolutionWindow.i
+
+# target to preprocess a source file
+filesystemUi/PathResolutionWindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainGUI.dir/build.make CMakeFiles/MainGUI.dir/filesystemUi/PathResolutionWindow.cpp.i
+.PHONY : filesystemUi/PathResolutionWindow.cpp.i
+
+filesystemUi/PathResolutionWindow.s: filesystemUi/PathResolutionWindow.cpp.s
+.PHONY : filesystemUi/PathResolutionWindow.s
+
+# target to generate assembly for a file
+filesystemUi/PathResolutionWindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainGUI.dir/build.make CMakeFiles/MainGUI.dir/filesystemUi/PathResolutionWindow.cpp.s
+.PHONY : filesystemUi/PathResolutionWindow.cpp.s
+
 filesystemUi/filesystemWindow.o: filesystemUi/filesystemWindow.cpp.o
 .PHONY : filesystemUi/filesystemWindow.o
 
@@ -316,6 +340,9 @@ help:
 	@echo "... filesystemUi/CoreEngineWindow.o"
 	@echo "... filesystemUi/CoreEngineWindow.i"
 	@echo "... filesystemUi/CoreEngineWindow.s"
+	@echo "... filesystemUi/PathResolutionWindow.o"
+	@echo "... filesystemUi/PathResolutionWindow.i"
+	@echo "... filesystemUi/PathResolutionWindow.s"
 	@echo "... filesystemUi/filesystemWindow.o"
 	@echo "... filesystemUi/filesystemWindow.i"
 	@echo "... filesystemUi/filesystemWindow.s"

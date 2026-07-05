@@ -200,6 +200,12 @@
 			null
 		],
 		[
+			"/home/aya/xv6_ruba/gui/MainGUI/filesystemUi/PathResolutionWindow.h",
+			"MU",
+			"3F6BJCI6SD/moc_PathResolutionWindow.cpp",
+			null
+		],
+		[
 			"/home/aya/xv6_ruba/gui/MainGUI/filesystemUi/filesystemWindow.h",
 			"MU",
 			"3F6BJCI6SD/moc_filesystemWindow.cpp",
@@ -288,6 +294,11 @@
 	[
 		[
 			"/home/aya/xv6_ruba/gui/MainGUI/filesystemUi/CoreEngineWindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/aya/xv6_ruba/gui/MainGUI/filesystemUi/PathResolutionWindow.cpp",
 			"MU",
 			null
 		],

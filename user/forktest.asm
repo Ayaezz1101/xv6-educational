@@ -45,7 +45,7 @@ forktest(void)
 
   print("fork test\n");
   32:	00000517          	auipc	a0,0x0
-  36:	40e50513          	addi	a0,a0,1038 # 440 <getprocstats+0xe>
+  36:	3ee50513          	addi	a0,a0,1006 # 420 <fsread+0xe>
   3a:	fc7ff0ef          	jal	0 <print>
 
   for(n=0; n<N; n++){
@@ -67,7 +67,7 @@ forktest(void)
   if(n == N){
     print("fork claimed to work N times!\n");
   54:	00000517          	auipc	a0,0x0
-  58:	43c50513          	addi	a0,a0,1084 # 490 <getprocstats+0x5e>
+  58:	41c50513          	addi	a0,a0,1052 # 470 <fsread+0x5e>
   5c:	fa5ff0ef          	jal	0 <print>
     exit(1);
   60:	4505                	li	a0,1
@@ -80,7 +80,7 @@ forktest(void)
     if(wait(0) < 0){
       print("wait stopped early\n");
   6a:	00000517          	auipc	a0,0x0
-  6e:	3e650513          	addi	a0,a0,998 # 450 <getprocstats+0x1e>
+  6e:	3c650513          	addi	a0,a0,966 # 430 <fsread+0x1e>
   72:	f8fff0ef          	jal	0 <print>
       exit(1);
   76:	4505                	li	a0,1
@@ -91,7 +91,7 @@ forktest(void)
   if(wait(0) != -1){
     print("wait got too many\n");
   7c:	00000517          	auipc	a0,0x0
-  80:	3ec50513          	addi	a0,a0,1004 # 468 <getprocstats+0x36>
+  80:	3cc50513          	addi	a0,a0,972 # 448 <fsread+0x36>
   84:	f7dff0ef          	jal	0 <print>
     exit(1);
   88:	4505                	li	a0,1
@@ -114,7 +114,7 @@ forktest(void)
 
   print("fork test OK\n");
   ac:	00000517          	auipc	a0,0x0
-  b0:	3d450513          	addi	a0,a0,980 # 480 <getprocstats+0x4e>
+  b0:	3b450513          	addi	a0,a0,948 # 460 <fsread+0x4e>
   b4:	f4dff0ef          	jal	0 <print>
 }
   b8:	60e2                	ld	ra,24(sp)
@@ -835,43 +835,3 @@ fsread:
  414:	00000073          	ecall
  ret
  418:	8082                	ret
-
-000000000000041a <schedread>:
-.global schedread
-schedread:
- li a7, SYS_schedread
- 41a:	48e1                	li	a7,24
- ecall
- 41c:	00000073          	ecall
- ret
- 420:	8082                	ret
-
-0000000000000422 <memread>:
-.global memread
-memread:
- li a7, SYS_memread
- 422:	48e5                	li	a7,25
- ecall
- 424:	00000073          	ecall
- ret
- 428:	8082                	ret
-
-000000000000042a <getcpuinfo>:
-.global getcpuinfo
-getcpuinfo:
- li a7, SYS_getcpuinfo
- 42a:	48e9                	li	a7,26
- ecall
- 42c:	00000073          	ecall
- ret
- 430:	8082                	ret
-
-0000000000000432 <getprocstats>:
-.global getprocstats
-getprocstats:
- li a7, SYS_getprocstats
- 432:	48ed                	li	a7,27
- ecall
- 434:	00000073          	ecall
- ret
- 438:	8082                	ret

@@ -115,23 +115,3 @@ fsread:
  li a7, SYS_fsread
  ecall
  ret
-.global schedread
-schedread:
- li a7, SYS_schedread
- ecall
- ret
-.global memread
-memread:
- li a7, SYS_memread
- ecall
- ret
-.global getcpuinfo
-getcpuinfo:
- li a7, SYS_getcpuinfo
- ecall
- ret
-.global getprocstats
-getprocstats:
- li a7, SYS_getprocstats
- ecall
- ret

@@ -6,6 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MainGUI.dir/MainGUI_autogen/mocs_compilation.cpp.o.d"
   "CMakeFiles/MainGUI.dir/filesystemUi/CoreEngineWindow.cpp.o"
   "CMakeFiles/MainGUI.dir/filesystemUi/CoreEngineWindow.cpp.o.d"
+  "CMakeFiles/MainGUI.dir/filesystemUi/PathResolutionWindow.cpp.o"
+  "CMakeFiles/MainGUI.dir/filesystemUi/PathResolutionWindow.cpp.o.d"
   "CMakeFiles/MainGUI.dir/filesystemUi/filesystemWindow.cpp.o"
   "CMakeFiles/MainGUI.dir/filesystemUi/filesystemWindow.cpp.o.d"
   "CMakeFiles/MainGUI.dir/main.cpp.o"

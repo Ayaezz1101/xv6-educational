@@ -1,4 +1,3 @@
-//
 // File-system system calls.
 // Mostly argument checking, since we don't trust
 // user code, and calls into file.c and fs.c.
@@ -15,8 +14,6 @@
 #include "sleeplock.h"
 #include "file.h"
 #include "fcntl.h"
-#include "schedlog.h"
-#include "procinfo.h"
 
 // Fetch the nth word-sized system call argument as a file descriptor
 // and return both the descriptor and the corresponding struct file.
@@ -56,15 +53,26 @@ fdalloc(struct file *f)
 uint64
 sys_dup(void)
 {
-  struct file *f;
-  int fd;
+    struct file *f;
+    int oldfd;
+    int newfd;
 
-  if(argfd(0, 0, &f) < 0)
-    return -1;
-  if((fd=fdalloc(f)) < 0)
-    return -1;
-  filedup(f);
-  return fd;
+    if(argfd(0, &oldfd, &f) < 0)
+        return -1;
+
+    if((newfd = fdalloc(f)) < 0)
+        return -1;
+
+    filedup(f);
+
+    state_dup_file(
+        myproc()->pid,
+        oldfd,
+        newfd,
+        f
+    );
+
+    return newfd;
 }
 
 uint64
@@ -73,12 +81,18 @@ sys_read(void)
   struct file *f;
   int n;
   uint64 p;
-
+  int fd;
+  if(argfd(0, &fd, &f) < 0)
+    return -1;
+    
   argaddr(1, &p);
   argint(2, &n);
-  if(argfd(0, 0, &f) < 0)
-    return -1;
-  return fileread(f, p, n);
+  
+  safestrcpy(myproc()->current_syscall,
+             "READ",
+             sizeof(myproc()->current_syscall));
+             
+  return fileread(f, fd, p, n);
 }
 
 uint64
@@ -87,26 +101,41 @@ sys_write(void)
   struct file *f;
   int n;
   uint64 p;
+  int fd;
   
+  if(argfd(0, &fd , &f) < 0)
+    return -1;
+    
   argaddr(1, &p);
   argint(2, &n);
-  if(argfd(0, 0, &f) < 0)
-    return -1;
+  
+  safestrcpy(myproc()->current_syscall,
+             "WRITE",
+             sizeof(myproc()->current_syscall));
 
-  return filewrite(f, p, n);
+  return filewrite(f, fd, p, n);
 }
 
 uint64
 sys_close(void)
 {
-  int fd;
-  struct file *f;
+    int fd;
+    struct file *f;
 
-  if(argfd(0, &fd, &f) < 0)
-    return -1;
-  myproc()->ofile[fd] = 0;
-  fileclose(f);
-  return 0;
+    if(argfd(0, &fd, &f) < 0)
+        return -1;
+
+    myproc()->ofile[fd] = 0;
+
+    state_remove_fd(
+        myproc()->pid,
+        fd,
+        f
+    );
+
+    fileclose(f);
+
+    return 0;
 }
 
 uint64
@@ -130,7 +159,10 @@ sys_link(void)
 
   if(argstr(0, old, MAXPATH) < 0 || argstr(1, new, MAXPATH) < 0)
     return -1;
-
+    
+  safestrcpy(myproc()->current_syscall,
+             "LINK",
+             sizeof(myproc()->current_syscall));
   begin_op();
   if((ip = namei(old)) == 0){
     end_op();
@@ -159,7 +191,6 @@ sys_link(void)
   iput(ip);
 
   end_op();
-
   return 0;
 
 bad:
@@ -197,7 +228,10 @@ sys_unlink(void)
 
   if(argstr(0, path, MAXPATH) < 0)
     return -1;
-
+    
+  safestrcpy(myproc()->current_syscall,
+             "UNLINK",
+             sizeof(myproc()->current_syscall));
   begin_op();
   if((dp = nameiparent(path, name)) == 0){
     end_op();
@@ -235,7 +269,6 @@ sys_unlink(void)
   iunlockput(ip);
 
   end_op();
-
   return 0;
 
 bad:
@@ -291,10 +324,9 @@ create(char *path, short type, short major, short minor)
   }
 
   iunlockput(dp);
-
   return ip;
 
- fail:
+fail:
   // something went wrong. de-allocate ip.
   ip->nlink = 0;
   iupdate(ip);
@@ -311,10 +343,18 @@ sys_open(void)
   struct file *f;
   struct inode *ip;
   int n;
+  struct proc *p = myproc();
 
   argint(1, &omode);
+
   if((n = argstr(0, path, MAXPATH)) < 0)
     return -1;
+
+  safestrcpy(
+    myproc()->current_syscall,
+    "OPEN",
+    sizeof(myproc()->current_syscall)
+  );
 
   begin_op();
 
@@ -329,7 +369,9 @@ sys_open(void)
       end_op();
       return -1;
     }
+
     ilock(ip);
+
     if(ip->type == T_DIR && omode != O_RDONLY){
       iunlockput(ip);
       end_op();
@@ -337,19 +379,39 @@ sys_open(void)
     }
   }
 
-  if(ip->type == T_DEVICE && (ip->major < 0 || ip->major >= NDEV)){
+  if(ip->type == T_DEVICE &&
+     (ip->major < 0 || ip->major >= NDEV)){
     iunlockput(ip);
     end_op();
     return -1;
   }
 
-  if((f = filealloc()) == 0 || (fd = fdalloc(f)) < 0){
+  if((f=filealloc())==0 ||
+   (fd=fdalloc(f))<0){
+
     if(f)
-      fileclose(f);
+        fileclose(f);
+
     iunlockput(ip);
     end_op();
     return -1;
+
   }
+
+  if(path[0] == '/'){
+    safestrcpy(f->path, path, MAXPATH);
+} else {
+    char full[MAXPATH];
+
+    if(path[0] == '.'){
+        safestrcpy(full, "/", MAXPATH);
+    } else {
+        full[0] = '/';
+        safestrcpy(full + 1, path, MAXPATH - 1);
+    }
+
+    safestrcpy(f->path, full, MAXPATH);
+}
 
   if(ip->type == T_DEVICE){
     f->type = FD_DEVICE;
@@ -358,17 +420,28 @@ sys_open(void)
     f->type = FD_INODE;
     f->off = 0;
   }
-  f->ip = ip;
-  f->readable = !(omode & O_WRONLY);
-  f->writable = (omode & O_WRONLY) || (omode & O_RDWR);
 
-  if((omode & O_TRUNC) && ip->type == T_FILE){
+  f->ip = ip;
+
+  f->readable = !(omode & O_WRONLY);
+
+  f->writable =
+      (omode & O_WRONLY) ||
+      (omode & O_RDWR);
+
+  if((omode & O_TRUNC) &&
+      ip->type == T_FILE){
     itrunc(ip);
   }
 
   iunlock(ip);
   end_op();
-
+  state_update_file(
+    p->pid,
+    fd,
+    f,
+    path
+);
   return fd;
 }
 
@@ -377,7 +450,10 @@ sys_mkdir(void)
 {
   char path[MAXPATH];
   struct inode *ip;
-
+  
+  safestrcpy(myproc()->current_syscall,
+             "MKDIR",
+             sizeof(myproc()->current_syscall));
   begin_op();
   if(argstr(0, path, MAXPATH) < 0 || (ip = create(path, T_DIR, 0, 0)) == 0){
     end_op();
@@ -415,6 +491,9 @@ sys_chdir(void)
   struct inode *ip;
   struct proc *p = myproc();
   
+  safestrcpy(myproc()->current_syscall,
+             "CHDIR",
+             sizeof(myproc()->current_syscall));
   begin_op();
   if(argstr(0, path, MAXPATH) < 0 || (ip = namei(path)) == 0){
     end_op();
@@ -427,9 +506,12 @@ sys_chdir(void)
     return -1;
   }
   iunlock(ip);
+  
+  // 🔥 تصحيح: يجب بقاء الحذف البرمجي للـ cwd القديم داخل نطاق الـ FS Transaction
   iput(p->cwd);
-  end_op();
   p->cwd = ip;
+  end_op();
+  
   return 0;
 }
 
@@ -470,9 +552,11 @@ sys_exec(void)
 
   return ret;
 
- bad:
-  for(i = 0; i < NELEM(argv) && argv[i] != 0; i++)
-    kfree(argv[i]);
+bad:
+  for(i = 0; i < NELEM(argv) && argv[i] != 0; i++) {
+    if(argv[i] != 0)
+      kfree(argv[i]);
+  }
   return -1;
 }
 
@@ -505,117 +589,15 @@ sys_pipe(void)
   }
   return 0;
 }
+
 uint64
 sys_fsread(void)
 {
-  uint64 addr;
-  int n;
+  uint64 uaddr;
+  int max;
 
-  // استدعاء الدوال مباشرة لأنها void في نسختك
-  argaddr(0, &addr); 
-  argint(1, &n);
+  argaddr(0, &uaddr);   
+  argint(1, &max);      
 
-  // شرط حماية صارم داخل الكيرنل: 
-  // إذا كانت n سالبة، أو صفر، أو أكبر من الحد الأقصى للبفر (32)، قم بتصحيحها فوراً
-  if(n <= 0)
-    return 0;
-  if(n > 32)
-    n = 32;
-
-  // استدعاء الوظيفة الحقيقية وإعادة نتيجتها
-  return fslog_read_many((struct fs_event *)addr, n);
+  return fslog_read_many((struct fs_event *)uaddr, max);
 }
-
-uint64
-sys_schedread(void)
-{
-  uint64 addr;
-  int n;
-
-  argaddr(0, &addr);
-  argint(1, &n);
-
-  if(n <= 0)
-    return 0;
-  if(n > 32)
-    n = 32;
-
-  return schedread((struct sched_event *)addr, n);
-}
-
-uint64
-sys_getcpuinfo(void)
-{
-  uint64 addr;
-  int ncpu;
-  struct cpu_info info;
-  int i;
-  extern struct cpu cpus[NCPU];
-
-  argaddr(0, &addr);
-  argint(1, &ncpu);
-
-  if(ncpu <= 0 || ncpu > NCPU)
-    ncpu = NCPU;
-
-  // Fill in CPU info for each CPU
-  for(i = 0; i < ncpu; i++) {
-    memset(&info, 0, sizeof(info));
-    
-    info.cpu = i;
-    if(cpus[i].proc != 0) {
-      struct proc *p = cpus[i].proc;
-      info.active = 1;
-      info.current_pid = p->pid;
-      info.current_state = p->state;
-      
-      // Copy process name
-      safestrcpy(info.proc_name, p->name, PROC_NAME_LEN);
-      
-      // Get context from trapframe if available
-      if(p->trapframe) {
-        info.context_eip = p->trapframe->epc;  // instruction pointer
-        info.context_esp = p->trapframe->sp;   // stack pointer
-      }
-    }
-    info.busy_percent = 0;  // Simplified
-    
-    if(copyout(myproc()->pagetable, addr + i * sizeof(struct cpu_info), 
-               (char *)&info, sizeof(info)) < 0)
-      return -1;
-  }
-
-  return ncpu;
-}
-
-uint64
-sys_getprocstats(void)
-{
-  uint64 addr;
-  struct proc_stats stats;
-  struct proc *p;
-  extern struct proc proc[];
-
-  argaddr(0, &addr);
-
-  memset(&stats, 0, sizeof(stats));
-  stats.total_created = 0;
-  stats.total_exited = 0;
-
-  // Walk through all processes
-  for(p = proc; p < &proc[NPROC]; p++) {
-    if(p->state != UNUSED) {
-      stats.current_count[p->state]++;
-      stats.unique_count[p->state]++;
-      if(p->state == RUNNING) {
-        stats.total_created++;
-      }
-    }
-  }
-
-  if(copyout(myproc()->pagetable, addr, (char *)&stats, sizeof(stats)) < 0)
-    return -1;
-
-  return 0;
-}
-

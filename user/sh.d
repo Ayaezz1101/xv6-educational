@@ -1,3 +1,2 @@
 user/sh.o: user/sh.c kernel/types.h user/user.h kernel/csevent.h \
- kernel/types.h kernel/fslog.h kernel/schedlog.h kernel/memevent.h \
- kernel/procinfo.h kernel/param.h kernel/fcntl.h
+ kernel/types.h kernel/fslog.h kernel/fcntl.h

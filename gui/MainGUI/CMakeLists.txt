@@ -29,6 +29,8 @@ add_executable(MainGUI
     filesystemUi/filesystemWindow.h
     filesystemUi/CoreEngineWindow.cpp
     filesystemUi/CoreEngineWindow.h
+    filesystemUi/PathResolutionWindow.cpp
+    filesystemUi/PathResolutionWindow.h
 )
 
 # ربط المكتبات

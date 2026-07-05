@@ -6,19 +6,15 @@
 #include "param.h"
 
 #define PROC_STATE_COUNT 6
-#define PROC_NAME_LEN 16
 
 struct cpu_info {
   int cpu;
   int active;
   int current_pid;
-  char proc_name[PROC_NAME_LEN];
   int current_state;
   int last_pid;
   int last_state;
   uint64 active_ticks;
-  uint64 context_eip;
-  uint64 context_esp;
   int busy_percent;
 };
 

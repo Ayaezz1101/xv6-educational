@@ -5,6 +5,8 @@ MainGUI_autogen/timestamp: \
 	/home/aya/xv6_ruba/gui/MainGUI/build/MainGUI_autogen/moc_predefs.h \
 	/home/aya/xv6_ruba/gui/MainGUI/filesystemUi/CoreEngineWindow.cpp \
 	/home/aya/xv6_ruba/gui/MainGUI/filesystemUi/CoreEngineWindow.h \
+	/home/aya/xv6_ruba/gui/MainGUI/filesystemUi/PathResolutionWindow.cpp \
+	/home/aya/xv6_ruba/gui/MainGUI/filesystemUi/PathResolutionWindow.h \
 	/home/aya/xv6_ruba/gui/MainGUI/filesystemUi/filesystemWindow.cpp \
 	/home/aya/xv6_ruba/gui/MainGUI/filesystemUi/filesystemWindow.h \
 	/home/aya/xv6_ruba/gui/MainGUI/main.cpp \
@@ -426,6 +428,7 @@ MainGUI_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtSql/qtsql-config.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlexports.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlglobal.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QFrame \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGraphicsScene \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGraphicsView \
@@ -440,6 +443,7 @@ MainGUI_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QTabWidget \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QTableWidget \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QTextEdit \
+	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QTreeWidget \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QVBoxLayout \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QWidget \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractbutton.h \
@@ -449,6 +453,7 @@ MainGUI_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractslider.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qboxlayout.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgraphicsscene.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgraphicsview.h \
@@ -471,6 +476,9 @@ MainGUI_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtablewidget.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabwidget.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtextedit.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtreeview.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtreewidget.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtreewidgetitemiterator.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtwidgets-config.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtwidgetsexports.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtwidgetsglobal.h \

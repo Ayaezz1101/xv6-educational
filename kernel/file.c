@@ -37,23 +37,33 @@ static void file_report(
     e.type = LAYER_FILE;
 
     safestrcpy(e.op_name, op, sizeof(e.op_name));
+    e.file_object_id = (uint64)f;
 
-    // تم التعديل هنا: استخدام قسم file من الـ union
-    e.file.file_type = f->type;
+    if(f){
+        e.file_type = f->type;
 
-    e.file.readable = f->readable;
-    e.file.writable = f->writable;
+        e.readable = f->readable;
+        e.writable = f->writable;
 
-    e.file.file_ref = f->ref;
-    e.file.old_file_ref = old_ref;
+      if(f->type == FD_PIPE) safestrcpy(e.file_type_str, "PIPE", sizeof(e.file_type_str));
+      else if(f->type == FD_INODE) safestrcpy(e.file_type_str, "INODE", sizeof(e.file_type_str));
+      else if(f->type == FD_DEVICE) safestrcpy(e.file_type_str, "DEVICE", sizeof(e.file_type_str));
+      else safestrcpy(e.file_type_str, "NONE", sizeof(e.file_type_str));
 
-    e.file.file_off = f->off;
-    e.file.old_file_off = old_off;
+        e.file_ref = f->ref;
+        e.old_file_ref = old_ref;
+
+        e.file_off = f->off;
+        e.old_file_off = old_off;
+
+        e.inum = f->ip ? f->ip->inum : -1;
+        safestrcpy(e.path, f->path, MAXPATH);
+    }
+
 
     safestrcpy(e.details, details, sizeof(e.details));
 
-    fslog_push(&e);
-}
+    fslog_push(&e);}
 
 void
 fileinit(void)
@@ -71,13 +81,6 @@ filealloc(void)
   for(f = ftable.file; f < ftable.file + NFILE; f++){
     if(f->ref == 0){
       f->ref = 1;
-      file_report(
-    "FILE_ALLOC",
-    f,
-    0,
-    0,
-    "Allocated file structure"
-);
       release(&ftable.lock);
       return f;
     }
@@ -95,13 +98,14 @@ filedup(struct file *f)
     panic("filedup");
   int old_ref = f->ref;
   f->ref++;
+  
   file_report(
-    "FILE_DUP",
+    "FILEDUP",
     f,
     old_ref,
     f->off,
-    "Duplicated file descriptor"
-);
+    "Duplicated file reference"
+  );
   release(&ftable.lock);
   return f;
 }
@@ -116,17 +120,30 @@ fileclose(struct file *f)
   if(f->ref < 1)
     panic("fileclose");
   int old_ref = f->ref;
+  int old_off = f->off;
+  
+  
   if(--f->ref > 0){
     file_report(
-    "FILE_CLOSE",
-    f,
-    old_ref,
-    f->off,
-    "Closing file"
-);
+      "FILECLOSE",
+      f,
+      old_ref,
+      old_off,
+      "Closing file descriptor"
+    );
     release(&ftable.lock);
     return;
   }
+  
+  // في حال رغبنا بالتقرير عند الإغلاق النهائي والتصفير:
+  file_report(
+    "FILE_FREE",
+    f,
+    old_ref,
+    old_off,
+    "File structure fully freed"
+  );
+
   ff = *f;
   f->ref = 0;
   f->type = FD_NONE;
@@ -162,8 +179,8 @@ filestat(struct file *f, uint64 addr)
 
 // Read from file f.
 // addr is a user virtual address.
-int
-fileread(struct file *f, uint64 addr, int n)
+
+int fileread(struct file *f, int fd, uint64 addr, int n)
 {
   int r = 0;
 
@@ -182,7 +199,7 @@ fileread(struct file *f, uint64 addr, int n)
 
     if((r = readi(f->ip, 1, addr, f->off, n)) > 0)
    
-    f->off += r;
+   { f->off += r;}
     file_report(
     "FILE_READ",
     f,
@@ -200,8 +217,8 @@ fileread(struct file *f, uint64 addr, int n)
 
 // Write to file f.
 // addr is a user virtual address.
-int
-filewrite(struct file *f, uint64 addr, int n)
+
+int filewrite(struct file *f, int fd, uint64 addr, int n)
 {
   int r, ret = 0;
 
@@ -255,3 +272,4 @@ filewrite(struct file *f, uint64 addr, int n)
 
   return ret;
 }
+

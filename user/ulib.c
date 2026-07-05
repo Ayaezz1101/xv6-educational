@@ -3,7 +3,6 @@
 #include "kernel/fcntl.h"
 #include "kernel/riscv.h"
 #include "kernel/vm.h"
-#include "kernel/procinfo.h"
 #include "user/user.h"
 
 //

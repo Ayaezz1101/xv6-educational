@@ -32,9 +32,9 @@ struct file*    filealloc(void);
 void            fileclose(struct file*);
 struct file*    filedup(struct file*);
 void            fileinit(void);
-int             fileread(struct file*, uint64, int n);
+int             fileread(struct file*, int, uint64, int);
 int             filestat(struct file*, uint64 addr);
-int             filewrite(struct file*, uint64, int n);
+int             filewrite(struct file*, int, uint64, int);
 
 // fs.c
 void            fsinit(int);
@@ -79,7 +79,10 @@ void            fslog_bwrite_ev(int dev, int blockno, int buf_id,
                                 int refcnt, int valid, int lru_pos);
 void            fslog_brelease_ev(int dev, int blockno, int buf_id,
                                   int ref_before, int ref_after,
-                                  int valid, int lru_before, int lru_after);
+                                  int valid, int lru_before, int lru_after);                             
+void state_update_file(int pid, int fd, struct file *f, char *path);
+void state_remove_fd(int pid, int fd, struct file *f);
+void state_dup_file(int pid, int oldfd, int newfd, struct file *f);
 
 // kalloc.c
 void*           kalloc(void);

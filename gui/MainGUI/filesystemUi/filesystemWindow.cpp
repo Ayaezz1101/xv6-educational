@@ -5,6 +5,7 @@
 #include <QPen>
 
 #include "CoreEngineWindow.h"
+#include "PathResolutionWindow.h"
 
 FileSystemWindow::FileSystemWindow(QWidget *parent) : QMainWindow(parent) {
     setupLayout();
@@ -41,10 +42,14 @@ void FileSystemWindow::setupLayout() {
 
     layout->addWidget(tabs);
     layout->addWidget(explanationArea);
-   
 
-CoreEngineWindow *coreEngineWindow = new CoreEngineWindow(this);
-tabs->addTab(coreEngineWindow, "3. Core Engine");
+    // ===== Tab 3: Core Engine (Buffer Cache) =====
+    coreEngineWindow = new CoreEngineWindow(this);
+    tabs->addTab(coreEngineWindow, "3. Core Engine (Buffer Cache)");
+
+    // ===== Tab 4: Path Resolution & File Operations =====
+    pathResolutionWindow = new PathResolutionWindow(this);
+    tabs->addTab(pathResolutionWindow, "4. Path Resolution & File Operations");
 }
 
 void FileSystemWindow::drawLayers() {
